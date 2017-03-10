@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  # Relations
+  has_many :late_plates, dependent: :destroy
+
   # Validation
   validates :first_name, presence: true,
                          length: { minimum: 1 }

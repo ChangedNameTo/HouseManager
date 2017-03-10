@@ -1,3 +1,5 @@
+<%= render 'layouts/header' %>
+
 <h1>Listing users</h1>
 
 <table class="table">
@@ -5,7 +7,7 @@
     <th>Name</th>
     <th>Email Address</th>
     <th>Phone Number</th>
-    <th colspan="2">Actions</th>
+    <th style="text-align:center">Actions</th>
   </tr>
 
   <% @users.each do |user| %>
@@ -13,8 +15,16 @@
       <td><%= user.full_name %></td>
       <td><%= user.email_address %></td>
       <td><%= user.phone_number %></td>
-      <td><%= link_to 'Show', user_path(user) %></td>
-      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td class="btn-group" role="group" aria-label="...">
+		<button type="button" class="btn btn-default"><%= link_to 'Show', user_path(user) %></button>
+		<button type="button" class="btn btn-default"><%= link_to 'Edit', edit_user_path(user) %></button>
+		<button type="button" class="btn btn-default"><%= link_to 'Delete', user_path(user),
+              method: :delete,
+              data: { confirm: 'Delete user?' } %></button>
+
+      <td style="text-align:center"></td>
+      <td style="text-align:center"></td>
+      <td style="text-align:center"></td>
     </tr>
   <% end %>
 </table>
