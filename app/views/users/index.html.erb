@@ -1,31 +1,28 @@
 <%= render 'layouts/header' %>
 
-<h1>Listing users</h1>
+<div class="container theme-showcase">
 
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>Email Address</th>
-    <th>Phone Number</th>
-    <th style="text-align:center">Actions</th>
-  </tr>
+  <h1>User List</h1>
 
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.full_name %></td>
-      <td><%= user.email_address %></td>
-      <td><%= user.phone_number %></td>
-      <td class="btn-group" role="group" aria-label="...">
-		<button type="button" class="btn btn-default"><%= link_to 'Show', user_path(user) %></button>
-		<button type="button" class="btn btn-default"><%= link_to 'Edit', edit_user_path(user) %></button>
-		<button type="button" class="btn btn-default"><%= link_to 'Delete', user_path(user),
-              method: :delete,
-              data: { confirm: 'Delete user?' } %></button>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
 
-      <td style="text-align:center"></td>
-      <td style="text-align:center"></td>
-      <td style="text-align:center"></td>
-    </tr>
-  <% end %>
-</table>
-<%= link_to 'Home', root_path %></td>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.email_address %></td>
+          <td><%= user.phone_number %></td>
+          <td class="btn-group" role="group" aria-label="...">
+            <%= link_to "Show", user_path(user), :class => "btn btn-primary" %>
+            <%= link_to "Edit", edit_user_path(user), :class => "btn btn-success" %>
+            <%= link_to "Delete", user_path(user),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+</div>
