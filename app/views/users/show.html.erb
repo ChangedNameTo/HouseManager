@@ -1,17 +1,20 @@
-<p>
-  <strong>Name:</strong>
-  <%= @user.full_name %>
-</p>
+<%= render 'layouts/header' %>
 
-<p>
-  <strong>Email Address:</strong>
-  <%= @user.email_address || "--" %>
-</p>
+<div class="container theme-showcase">
+  <p>
+    <strong>Name:</strong>
+    <%= @user.full_name %>
+  </p>
 
-<p>
-  <strong>Phone Number:</strong>
-  <%= @user.phone_number || "--" %>
-</p>
+  <p>
+    <strong>Email Address:</strong>
+    <%= @user.email_address || "--" %>
+  </p>
 
-<%= link_to 'Back', users_path %>
-<%= link_to 'Edit', edit_user_path(@user) %>
+  <p>
+    <strong>Phone Number:</strong>
+    <%= @user.phone_number || "--" %>
+  </p>
+</div>
+
+<%= render 'layouts/footer' %>
