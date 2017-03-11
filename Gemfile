@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
+
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -20,9 +21,14 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# The above gems were default. These are mine.
+
 # Bootstrap because I'm lazy and it looks good
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
+
+# Pundit handles my access permissions for everything
+gem "pundit"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
