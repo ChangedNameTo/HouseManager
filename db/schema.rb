@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 5) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "full_name",    null: false
+    t.string   "abbreviation", null: false
+    t.string   "school",       null: false
+    t.string   "address",      null: false
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["full_name"], name: "index_organizations_on_full_name", unique: true, using: :btree
+    t.index ["user_id"], name: "index_organizations_on_user_id", using: :btree
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string   "label",       null: false
@@ -34,14 +46,18 @@ ActiveRecord::Schema.define(version: 3) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",    null: false
-    t.string   "last_name",     null: false
-    t.string   "phone_number",  null: false
-    t.string   "email_address", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
+    t.string   "phone_number",    null: false
+    t.string   "email_address",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "organization_id"
+    t.index ["organization_id"], name: "index_users_on_organization_id", using: :btree
   end
 
+  add_foreign_key "organizations", "users", name: "fk_organization_manager"
   add_foreign_key "user_roles", "roles", name: "fk_user_role_role"
   add_foreign_key "user_roles", "users", name: "fk_user_role_user"
+  add_foreign_key "users", "organizations"
 end
