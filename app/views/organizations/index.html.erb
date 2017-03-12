@@ -11,17 +11,17 @@
         <th>Address</th>
         <th>Manager</th>
       </tr>
-      <% @users.each do |user| %>
+      <% @organizations.each do |organization| %>
         <tr>
           <td><%= organization.id %></td>
           <td><%= organization.full_name %></td>
           <td><%= organization.school %></td>
           <td><%= organization.address %></td>
-          <td><%= organization. %></td>
+          <td><%= organization.organization_manager %></td>
           <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Show", user_path(user), :class => "btn btn-primary" %>
-            <%= link_to "Edit", edit_user_path(user), :class => "btn btn-success" %>
-            <%= link_to "Delete", user_path(user),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+            <%= link_to "Show", organization_path(organization), :class => "btn btn-primary" %>
+            <%= link_to "Edit", edit_organization_path(organization), :class => "btn btn-success" %>
+            <%= link_to "Delete", organization_path(organization),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete organization? You probably dont want to do this.' } %>
           </td>
         </tr>
       <% end %>
