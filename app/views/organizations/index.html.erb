@@ -1,0 +1,31 @@
+<%= render 'layouts/header' %>
+
+<div class="container theme-showcase">
+  <div style="text-align:left;">
+    <h1>Organization List<span style="float:right;"><%= link_to "New Organization", new_organization_path(), :class => "btn btn-primary" %></span></h1>
+        <table class="table">
+      <tr>
+        <th>Organization</th>
+        <th>Full Name</th>
+        <th>School</th>
+        <th>Address</th>
+        <th>Manager</th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= organization.id %></td>
+          <td><%= organization.full_name %></td>
+          <td><%= organization.school %></td>
+          <td><%= organization.address %></td>
+          <td><%= organization. %></td>
+          <td class="btn-group" role="group" aria-label="...">
+            <%= link_to "Show", user_path(user), :class => "btn btn-primary" %>
+            <%= link_to "Edit", edit_user_path(user), :class => "btn btn-success" %>
+            <%= link_to "Delete", user_path(user),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+</div>
+
+<%= render 'layouts/footer' %>

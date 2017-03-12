@@ -5,13 +5,13 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
       t.string :abbreviation, null: false
       t.string :school, null: false
       t.string :address, null: false
-      t.references :user, index: true
+      t.integer :organization_manager
 
       t.timestamps
     end
 
     add_index :organizations, :full_name, unique: true
-    add_foreign_key :organizations, :users, name: 'fk_organization_manager'
+    add_foreign_key :organizations, :users, column:"organization_manager", name: 'fk_organization_manager'
 
     organizations = [
       {
