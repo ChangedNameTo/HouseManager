@@ -1,0 +1,20 @@
+<%= render 'layouts/header' %>
+
+<div class="container theme-showcase">
+  <p>
+    <strong>Name:</strong>
+    <%= @user.full_name %>
+  </p>
+
+  <p>
+    <strong>Email Address:</strong>
+    <%= @user.email_address || "--" %>
+  </p>
+
+  <p>
+    <strong>Phone Number:</strong>
+    <%= @user.phone_number || "--" %>
+  </p>
+</div>
+
+<%= render 'layouts/footer' %>
