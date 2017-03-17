@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
   def update
     @organization = Organization.find(params[:id])
 
-    if @organization.update(user_params)
+    if @organization.update(organization_params)
       redirect_to @organization
     else
       render 'edit'
@@ -30,7 +30,7 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    @organizations = policy_scope(Organization)
+    @organizations = policy_scope(Organization).all
   end
 
   def show
@@ -46,7 +46,7 @@ class OrganizationsController < ApplicationController
 
   private
   def organization_params
-    params.require(:user).permit(:first_name, :last_name, :email_address, :phone_number)
+    params.require(:organization).permit(:full_name, :abbreviation, :school, :address, :organization_manager)
   end
 
   def authorize_action

@@ -6,7 +6,7 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def index?
-    user.has_role?(Role.where(label: ['System Admin']))
+    user.has_role?(Role.where(label: 'System Admin'))
   end
 
   def show?
@@ -14,7 +14,7 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def create?
-    user.has_role?(Role.where(label: ['System Admin']))
+    index?
   end
 
   def destroy?

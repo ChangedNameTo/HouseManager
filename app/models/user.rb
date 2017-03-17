@@ -20,7 +20,16 @@ class User < ApplicationRecord
   # Helpers
   def full_name
     "#{first_name} #{last_name}"
+  end
 
+  def has_role?(roles)
+    roles.each do |role|
+      if self.roles.include? role
+        return true
+      end
+    end
+
+    false
   end
 
 	def self.from_omniauth(auth)
