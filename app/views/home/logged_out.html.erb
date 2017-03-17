@@ -3,7 +3,7 @@
 <div class="container theme-showcase">
   <h1>You are not logged in.</h1>
   <h3>Please sign in to continue</h3>
+  <%= link_to "Sign in", "/auth/google_oauth2", class: "btn btn-primary" %>
 </div>
 
-<%= link_to "Sign in", "/auth/google_oauth2", class: "btn btn-primary" %>
 <%= render 'layouts/footer' %>
