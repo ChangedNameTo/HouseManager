@@ -14,10 +14,10 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def create?
-    user.has_role?(Role.where(label: ['System Admin']))
+    index?
   end
 
   def destroy?
-    create?
+    index?
   end
 end
