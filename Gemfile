@@ -31,7 +31,7 @@ gem 'autoprefixer-rails'
 gem "pundit"
 
 # Google oauth2 is by far the easiest way to do this
-gem "omniauth-google-oauth2", "~> 0.2.1"
+gem "omniauth-google-oauth2", "~> 0.4.1"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
