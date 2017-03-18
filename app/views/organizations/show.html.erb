@@ -1,38 +1,35 @@
 <%= render 'layouts/header' %>
 
 <div class="container theme-showcase">
-  <p>
-    <strong>Name:</strong>
-    <%= @organization.full_name %>
-  </p>
-
-  <p>
-    <strong>Abbreviation:</strong>
-    <%= @organization.abbreviation %>
-  </p>
-
-  <p>
-    <strong>School:</strong>
-    <%= @organization.school %>
-  </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= @organization.address %>
-  </p>
-
-  <p>
-    <strong>Org Manager:</strong>
-    <%= @organization.organization_manager || "--" %>
-  </p>
 
   <div style="text-align:left;">
     <h1>
+      <%= @organization.full_name %>
+    </h1>
+    <div>
+      <p>
+        <strong>Abbreviation:</strong>
+        <%= @organization.abbreviation %>
+      </p>
+      <p>
+        <strong>School:</strong>
+        <%= @organization.school %>
+      </p>
+      <p>
+        <strong>Address:</strong>
+        <%= @organization.address %>
+      </p>
+      <p>
+        <strong>Org Manager:</strong>
+        <%= @organization.manager_name %>
+      </p>
+    </div>
+    <h2>
       Organization Members
       <span style="float:right;">
         <%= link_to "New User", new_user_path(), :class => "btn btn-primary" %>
       </span>
-    </h1>
+    </h2>
     <table class="table">
       <tr>
         <th>Name</th>
