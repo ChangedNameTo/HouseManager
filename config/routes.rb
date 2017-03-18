@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'authenticate', to: 'home#logged_out'
   resource :home, only: [:logged_in, :logged_out]
 
+  # Admin
+  get :admin, to: 'admin#home'
+
   # Users
   resources :users
 

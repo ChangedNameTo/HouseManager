@@ -22,6 +22,6 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def destroy?
-    create?
+    index?
   end
 end
