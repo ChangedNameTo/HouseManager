@@ -43,20 +43,19 @@ class UsersController < ApplicationController
   end
 
   def organization_enable
-    authorize(@user)
-    @user = User.find(params[:id])
-    @user.update_attributes(:enabled)
+    @user = User.find(params[:user_id])
+    @user.update_attributes(:enabled=> true)
   end
 
-  def organization_enable
-    authorize(@user)
-    @user = User.find(params[:id])
-    @user.update_attributes(:enabled)
+  def organization_disable
+    @user = User.find(params[:user_id])
+    @user.update_attributes(:enabled=> false)
+    @user.update_attributes(:affiliated_organization=> nil)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email_address, :phone_number)
+    params.require(:user).permit(:first_name, :last_name, :email_address, :phone_number, :affiliated_organization)
   end
 end

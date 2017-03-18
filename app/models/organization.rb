@@ -14,9 +14,13 @@ class Organization < ApplicationRecord
     users.concat(get_provisional_members(self))
   end
 
+  def chapter_school
+    "#{abbreviation} at #{school}"
+  end
+
   def get_provisional_members(user)
     members = []
-    User.where(organization_id: self.id).where.not(organization_id: nil).each do |member|
+    User.where(affiliated_organization: self.id).where.not(affiliated_organization: nil).where(enabled: false).each do |member|
       members.append(member)
     end
 
@@ -30,7 +34,7 @@ class Organization < ApplicationRecord
 
   def get_organization_members(user)
     members = []
-    User.where(organization_id: self.id).where.not(organization_id: nil).each do |member|
+    User.where(affiliated_organization: self.id).where.not(affiliated_organization: nil).where(enabled: true).each do |member|
       members.append(member)
     end
 

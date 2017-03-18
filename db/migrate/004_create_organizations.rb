@@ -15,9 +15,9 @@ class CreateOrganizations < ActiveRecord::Migration[5.0]
 
     organizations = [
       {
-        full_name: "Phi Sigma Kappa", 
-        abbreviation: "PSK", 
-        school: "Georgia Tech", 
+        full_name: "Phi Sigma Kappa",
+        abbreviation: "PSK",
+        school: "Georgia Tech",
         address: "825 Techwood Drive NW"
       }
 

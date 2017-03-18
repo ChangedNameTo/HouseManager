@@ -1,20 +1,25 @@
 <%= render 'layouts/header' %>
 
 <div class="container theme-showcase">
-  <p>
-    <strong>Name:</strong>
-    <%= @user.full_name %>
-  </p>
-
-  <p>
-    <strong>Email Address:</strong>
-    <%= @user.email_address || "--" %>
-  </p>
-
-  <p>
-    <strong>Phone Number:</strong>
-    <%= @user.phone_number || "--" %>
-  </p>
+  <div style="text-align:left;">
+    <h1>
+      <%= @user.full_name %>
+    </h1>
+    <div>
+      <p>
+        <strong>Phone Number:</strong>
+        <%= @user.phone_number %>
+      </p>
+      <p>
+        <strong>Email Address:</strong>
+        <%= @user.email_address || "--" %>
+      </p>
+      <p>
+        <strong>Organization:</strong>
+        <%= Organization.find(@user.affiliated_organization).chapter_school %>
+      </p>
+    </div>
+  </div>
 </div>
 
 <%= render 'layouts/footer' %>

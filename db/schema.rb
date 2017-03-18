@@ -45,24 +45,23 @@ ActiveRecord::Schema.define(version: 5) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",                       null: false
-    t.string   "last_name",                        null: false
+    t.string   "first_name",                              null: false
+    t.string   "last_name",                               null: false
     t.string   "phone_number"
-    t.boolean  "enabled",          default: false, null: false
-    t.string   "email_address",                    null: false
-    t.string   "provider",                         null: false
-    t.string   "uid",                              null: false
-    t.string   "oauth_token",                      null: false
-    t.datetime "oauth_expires_at",                 null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "organization_id"
-    t.index ["organization_id"], name: "index_users_on_organization_id", using: :btree
+    t.boolean  "enabled",                 default: false, null: false
+    t.string   "email_address",                           null: false
+    t.string   "provider",                                null: false
+    t.string   "uid",                                     null: false
+    t.string   "oauth_token",                             null: false
+    t.datetime "oauth_expires_at",                        null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "affiliated_organization"
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
   end
 
   add_foreign_key "organizations", "users", column: "organization_manager", name: "fk_organization_manager"
   add_foreign_key "user_roles", "roles", name: "fk_user_role_role"
   add_foreign_key "user_roles", "users", name: "fk_user_role_user"
-  add_foreign_key "users", "organizations"
+  add_foreign_key "users", "organizations", column: "affiliated_organization", name: "fk_affiliated_organization"
 end
