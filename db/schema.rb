@@ -45,16 +45,17 @@ ActiveRecord::Schema.define(version: 5) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",       null: false
-    t.string   "last_name",        null: false
+    t.string   "first_name",                       null: false
+    t.string   "last_name",                        null: false
     t.string   "phone_number"
-    t.string   "email_address",    null: false
-    t.string   "provider",         null: false
-    t.string   "uid",              null: false
-    t.string   "oauth_token",      null: false
-    t.datetime "oauth_expires_at", null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.boolean  "enabled",          default: false, null: false
+    t.string   "email_address",                    null: false
+    t.string   "provider",                         null: false
+    t.string   "uid",                              null: false
+    t.string   "oauth_token",                      null: false
+    t.datetime "oauth_expires_at",                 null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "organization_id"
     t.index ["organization_id"], name: "index_users_on_organization_id", using: :btree
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree

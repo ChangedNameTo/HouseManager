@@ -9,6 +9,20 @@ class Organization < ApplicationRecord
     end
   end
 
+  def provisional_members
+    users = []
+    users.concat(get_provisional_members(self))
+  end
+
+  def get_provisional_members(user)
+    members = []
+    User.where(organization_id: self.id).where.not(organization_id: nil).each do |member|
+      members.append(member)
+    end
+
+    members
+  end
+
   def organization_members
     users = []
     users.concat(get_organization_members(self))

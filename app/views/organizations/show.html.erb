@@ -25,10 +25,29 @@
       </p>
     </div>
     <h2>
+      Provisional Members
+    </h2>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+      <% @organization.provisional_members.each do |user| %>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.email_address %></td>
+          <td><%= user.phone_number %></td>
+          <td class="btn-group" role="group" aria-label="...">
+            <%= link_to "Approve", user_path(user), :class => "btn btn-primary" %>
+            <%= link_to "Delete", user_path(user),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <h2>
       Organization Members
-      <span style="float:right;">
-        <%= link_to "New User", new_user_path(), :class => "btn btn-primary" %>
-      </span>
     </h2>
     <table class="table">
       <tr>
