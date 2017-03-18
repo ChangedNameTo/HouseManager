@@ -46,7 +46,13 @@ class OrganizationsController < ApplicationController
 
   private
   def organization_params
-    params.require(:organization).permit(:full_name, :abbreviation, :school, :address, :organization_manager)
+    params.require(:organization).permit(
+      :full_name,
+      :abbreviation,
+      :school,
+      :address,
+      :organization_manager
+    )
   end
 
   def authorize_action

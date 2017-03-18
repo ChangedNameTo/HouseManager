@@ -17,7 +17,7 @@
           <td><%= organization.full_name %></td>
           <td><%= organization.school %></td>
           <td><%= organization.address %></td>
-          <td><%= organization.organization_manager %></td>
+          <td><%= organization.manager_name || "You need to define a manager"%></td>
           <td class="btn-group" role="group" aria-label="...">
             <%= link_to "Show", organization_path(organization), :class => "btn btn-primary" %>
             <%= link_to "Edit", edit_organization_path(organization), :class => "btn btn-success" %>
