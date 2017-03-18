@@ -42,8 +42,21 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def organization_enable
+    authorize(@user)
+    @user = User.find(params[:id])
+    @user.update_attributes(:enabled)
+  end
+
+  def organization_enable
+    authorize(@user)
+    @user = User.find(params[:id])
+    @user.update_attributes(:enabled)
+  end
+
   private
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email_address, :phone_number)
-    end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email_address, :phone_number)
+  end
 end

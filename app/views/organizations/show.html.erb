@@ -40,8 +40,8 @@
           <td><%= user.email_address %></td>
           <td><%= user.phone_number %></td>
           <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Approve", user_path(user), :class => "btn btn-primary" %>
-            <%= link_to "Delete", user_path(user),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+            <%= button_to "Approve", user_organization_enable_path(@user, enabled: true), :method => :put %>
+            <%= button_to "Deny", user_organization_disable_path(@user, organization_id: null), :method => :put %>
           </td>
         </tr>
       <% end %>

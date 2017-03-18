@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   get :admin, to: 'admin#home'
 
   # Users
-  resources :users
+  resources :users do
+    put :organization_enable, :organization_disable
+  end
 
   # User roles
   resources :user_roles
