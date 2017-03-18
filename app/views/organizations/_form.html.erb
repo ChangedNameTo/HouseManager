@@ -35,7 +35,7 @@
   </div>
 
   <div class="">
-    <%= f.collection_select(:user, User.all, :id, :full_name, {}, {:class=>'form-control'}) %>
+    <%= f.collection_select( :organization_manager, User.all, :id, :full_name, {}, {:class=>'form-control'}) %>
   </div>
   </br>
   <div>

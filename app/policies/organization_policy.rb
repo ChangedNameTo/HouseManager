@@ -17,6 +17,10 @@ class OrganizationPolicy < ApplicationPolicy
     index?
   end
 
+  def update?
+    index?
+  end
+
   def destroy?
     create?
   end
