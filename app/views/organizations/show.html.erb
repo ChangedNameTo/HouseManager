@@ -24,6 +24,7 @@
         <%= @organization.manager_name %>
       </p>
     </div>
+    <% if @organization.provisional_members.present? %>
     <h2>
       Provisional Members
     </h2>
@@ -46,6 +47,7 @@
         </tr>
       <% end %>
     </table>
+    <% end %>
     <h2>
       Organization Members
     </h2>
