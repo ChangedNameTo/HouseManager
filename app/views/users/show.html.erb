@@ -16,7 +16,11 @@
       </p>
       <p>
         <strong>Organization:</strong>
-        <%= Organization.find(@user.affiliated_organization).chapter_school %>
+        <% if @user.affiliated_organization %>
+          <%= Organization.find(@user.affiliated_organization).chapter_school %>
+        <% else %>
+          <%= "You are not currently affiliated with an organization" %>
+        <% end %>
       </p>
     </div>
   </div>

@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 5) do
     t.string   "school",               null: false
     t.string   "address",              null: false
     t.integer  "organization_manager"
+    t.integer  "user_manager"
+    t.integer  "kitchen_manager"
+    t.integer  "house_manager"
+    t.integer  "service_manager"
+    t.integer  "scholarship_manager"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["full_name"], name: "index_organizations_on_full_name", unique: true, using: :btree
@@ -60,7 +65,12 @@ ActiveRecord::Schema.define(version: 5) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
   end
 
+  add_foreign_key "organizations", "users", column: "house_manager", name: "fk_house_manager"
+  add_foreign_key "organizations", "users", column: "kitchen_manager", name: "fk_kitchen_manager"
   add_foreign_key "organizations", "users", column: "organization_manager", name: "fk_organization_manager"
+  add_foreign_key "organizations", "users", column: "scholarship_manager", name: "fk_scholarship_manager"
+  add_foreign_key "organizations", "users", column: "service_manager", name: "fk_service_manager"
+  add_foreign_key "organizations", "users", column: "user_manager", name: "fk_user_manager"
   add_foreign_key "user_roles", "roles", name: "fk_user_role_role"
   add_foreign_key "user_roles", "users", name: "fk_user_role_user"
   add_foreign_key "users", "organizations", column: "affiliated_organization", name: "fk_affiliated_organization"

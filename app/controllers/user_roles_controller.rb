@@ -1,8 +1,8 @@
-class UserRolesController < SecuredController
+class UserRolesController < ApplicationController
   before_action :authorize_action
 
   def index
-    @users = policy_scope(User)
+    @user_roles = policy_scope(UserRole)
   end
 
   def show
@@ -11,12 +11,10 @@ class UserRolesController < SecuredController
   end
 
   def create
-    role = Role.find(params[:user_role][:role_id])
+    role = Role.find(params[:role_id])
     user = User.find(params[:user_id])
 
     UserRole.create(user: user, role: role)
-
-    redirect_to roles_user_path(user)
   end
 
   def destroy

@@ -21,7 +21,9 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# The above gems were default. These are mine.
+################################################
+# The above gems were default. These are mine. #
+################################################
 
 # Bootstrap because I'm lazy and it looks good
 gem 'bootstrap-sass', '~> 3.2.0'
@@ -32,6 +34,10 @@ gem "pundit"
 
 # Google oauth2 is by far the easiest way to do this
 gem "omniauth-google-oauth2", "~> 0.4.1"
+
+################################################
+#               No longer mine                 #
+################################################
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
