@@ -36,6 +36,11 @@ class CreateRoles < ActiveRecord::Migration[5.0]
       },
 
       {
+        label: "Scholarship Manager",
+        description: "Manages study hours."
+      },
+
+      {
         label: "House Manager",
         description: "Manages chore types and chore assignments."
       },
