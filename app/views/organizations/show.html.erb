@@ -3,26 +3,33 @@
 <div class="container theme-showcase">
 
   <div style="text-align:left;">
-    <h1>
-      <%= @organization.full_name %>
-    </h1>
-    <div>
-      <p>
-        <strong>Abbreviation:</strong>
-        <%= @organization.abbreviation %>
-      </p>
-      <p>
-        <strong>School:</strong>
-        <%= @organization.school %>
-      </p>
-      <p>
-        <strong>Address:</strong>
-        <%= @organization.address %>
-      </p>
-      <p>
-        <strong>Org Manager:</strong>
-        <%= @organization.manager_name %>
-      </p>
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+          <%= @organization.full_name %>
+        </h1>
+        <div>
+          <p>
+            <strong>Abbreviation:</strong>
+            <%= @organization.abbreviation %>
+          </p>
+          <p>
+            <strong>School:</strong>
+            <%= @organization.school %>
+          </p>
+          <p>
+            <strong>Address:</strong>
+            <%= @organization.address %>
+          </p>
+          <p>
+            <strong>Org Manager:</strong>
+            <%= @organization.manager_name %>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= render 'organizations/roles_table' %>
+      </div>
     </div>
     <% if @organization.provisional_members.present? %>
     <h2>

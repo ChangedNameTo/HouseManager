@@ -52,7 +52,12 @@ class OrganizationsController < ApplicationController
       :abbreviation,
       :school,
       :address,
-      :organization_manager
+      :organization_manager,
+      :user_manager,
+      :kitchen_manager,
+      :house_manager,
+      :service_manager,
+      :scholarship_manager
     )
   end
 
