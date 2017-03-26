@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+
   # Associations
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles, dependent: :destroy
@@ -16,6 +17,7 @@ class User < ApplicationRecord
     format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i, message: "Not a valid email address" }
 
   # Helpers
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -42,5 +44,4 @@ class User < ApplicationRecord
       user.save!
     end
   end
-
 end
