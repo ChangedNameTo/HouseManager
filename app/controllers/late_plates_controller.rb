@@ -1,0 +1,2 @@
+class LatePlatesController < ApplicationController
+end

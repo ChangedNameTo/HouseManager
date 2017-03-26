@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 6) do
+ActiveRecord::Schema.define(version: 7) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "late_plates", force: :cascade do |t|
+    t.date     "day",                        null: false
+    t.boolean  "completed",  default: false, null: false
+    t.integer  "meal",                       null: false
+    t.integer  "requester",                  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["day"], name: "index_late_plates_on_day", using: :btree
+  end
 
   create_table "meals", force: :cascade do |t|
     t.string   "name",       null: false
@@ -73,6 +83,8 @@ ActiveRecord::Schema.define(version: 6) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
   end
 
+  add_foreign_key "late_plates", "meals", column: "meal", name: "fk_late_plate_meal"
+  add_foreign_key "late_plates", "users", column: "requester", name: "fk_late_plate_requester"
   add_foreign_key "organizations", "users", column: "house_manager", name: "fk_house_manager"
   add_foreign_key "organizations", "users", column: "kitchen_manager", name: "fk_kitchen_manager"
   add_foreign_key "organizations", "users", column: "organization_manager", name: "fk_organization_manager"
