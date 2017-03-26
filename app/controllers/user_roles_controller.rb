@@ -1,6 +1,10 @@
 class UserRolesController < ApplicationController
   before_action :authorize_action
 
+  def new
+    @user_role = UserRole.new
+  end
+
   def index
     @user_roles = policy_scope(UserRole)
   end
@@ -11,14 +15,11 @@ class UserRolesController < ApplicationController
   end
 
   def create
-    role = Role.find(params[:role_id])
-    user = User.find(params[:user_id])
-
-    UserRole.create(user: user, role: role)
+    UserRole.create(user_id: user, role_id: role)
   end
 
-  def destroy
-    user_role = UserRole.find(params[:id])
+  def delete
+    user_role = UserRole.find(params[:user_role_id])
     user_role.destroy
     redirect_to roles_user_path(user_role.user)
   end
@@ -27,5 +28,9 @@ class UserRolesController < ApplicationController
 
   def authorize_action
     authorize UserRole
+  end
+
+  def user_role_params
+    params.require(:user_role).permit(:user_id, :role_id)
   end
 end
