@@ -21,6 +21,11 @@
           <%= link_to 'Organizations', organizations_path %>
         </li>
         <% end %>
+        <% if policy(:late_plate).index? %>
+        <li>
+          <%= link_to 'Late Plates', late_plates_path %>
+        </li>
+        <% end %>
         <li>
         </li>
       </ul>
