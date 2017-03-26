@@ -5,13 +5,13 @@ class UserRole < ApplicationRecord
   belongs_to :role
 
   # Validations
-  validates :user, 
+  validates :user,
     presence: true
 
-  validates :role, 
-    presence: true, 
+  validates :role,
+    presence: true,
     uniqueness: {
-      scope: :user, 
+      scope: :user,
       message: "Duplicate roles are not allowed"
     }
 

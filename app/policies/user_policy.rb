@@ -1,5 +1,9 @@
 class UserPolicy
-
+  class Scope < Scope
+    def resolve
+      scope
+    end
+  end
 
   def index?
     true
@@ -11,6 +15,14 @@ class UserPolicy
 
   def update_positions?
     user.has_role?(Role.where(label: ['System Admin', 'Organization Admin', 'User Admin']))
+  end
+
+  def organization_enable
+    update_positions?
+  end
+
+  def organization_disable
+    update_positions?
   end
 
   def update?
