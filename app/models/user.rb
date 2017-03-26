@@ -33,6 +33,16 @@ class User < ApplicationRecord
     false
   end
 
+  def is_member?(organization)
+    if self.affiliated_organization
+      if self.enabled
+        return true
+      end
+    end
+
+    false
+  end
+
 	def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.email_address = auth.info.email
