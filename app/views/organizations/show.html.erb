@@ -1,0 +1,85 @@
+<%= render 'layouts/header' %>
+
+<div class="container theme-showcase">
+
+  <div style="text-align:left;">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+          <%= @organization.full_name %>
+        </h1>
+        <div>
+          <p>
+            <strong>Abbreviation:</strong>
+            <%= @organization.abbreviation %>
+          </p>
+          <p>
+            <strong>School:</strong>
+            <%= @organization.school %>
+          </p>
+          <p>
+            <strong>Address:</strong>
+            <%= @organization.address %>
+          </p>
+          <p>
+            <strong>Org Manager:</strong>
+            <%= @organization.manager_name %>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= render 'organizations/roles_table' %>
+      </div>
+    </div>
+    <% if @organization.provisional_members.present? %>
+    <h2>
+      Provisional Members
+    </h2>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+      <% @organization.provisional_members.each do |user| %>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.email_address %></td>
+          <td><%= user.phone_number %></td>
+          <td class="btn-group" role="group" aria-label="...">
+            <%= link_to "Approve", user_organization_enable_path(user.id, enabled: true), method: :put, :class =>"btn btn-success" %>
+            <%= link_to "Deny", user_organization_disable_path(user.id, affiliated_organization: nil), method: :put, :class => "btn btn-danger"%>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <% end %>
+    <h2>
+      Organization Members
+    </h2>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+      <% @organization.organization_members.each do |user| %>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.email_address %></td>
+          <td><%= user.phone_number %></td>
+          <td class="btn-group" role="group" aria-label="...">
+            <%= link_to "Show", user_path(user), :class => "btn btn-primary" %>
+            <%= link_to "Edit", edit_user_path(user), :class => "btn btn-success" %>
+            <%= link_to "Remove from Org", user_organization_disable_path(user.id, affiliated_organization: nil),  method: :put, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+
+<%= render 'layouts/footer' %>

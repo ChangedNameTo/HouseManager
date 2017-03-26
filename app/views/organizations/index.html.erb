@@ -1,0 +1,35 @@
+<%= render 'layouts/header' %>
+
+<div class="container theme-showcase">
+  <div style="text-align:left;">
+    <h1>Organization List
+      <span style="float:right;">
+        <%= link_to "New Organization", new_organization_path(), :class => "btn btn-primary" %>
+      </span>
+    </h1>
+      <table class="table">
+      <tr>
+        <th>Organization</th>
+        <th>Full Name</th>
+        <th>School</th>
+        <th>Address</th>
+        <th>Manager</th>
+      </tr>
+      <% @organizations.each do |organization| %>
+        <tr>
+          <td><%= organization.id %></td>
+          <td><%= organization.full_name %></td>
+          <td><%= organization.school %></td>
+          <td><%= organization.address %></td>
+          <td><%= organization.manager_name || "You need to define a manager"%></td>
+          <td class="btn-group" role="group" aria-label="...">
+            <%= link_to "Show", organization_path(organization), :class => "btn btn-primary" %>
+            <%= link_to "Edit", edit_organization_path(organization), :class => "btn btn-success" %>
+            <%= link_to "Delete", organization_path(organization),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete organization? You probably dont want to do this.' } %>
+          </td>
+        </tr>
+      <% end %>
+  </table>
+</div>
+
+<%= render 'layouts/footer' %>
