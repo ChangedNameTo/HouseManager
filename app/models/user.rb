@@ -1,5 +1,6 @@
 class User < ApplicationRecord
 
+  # Scopes
 
   # Associations
   has_many :user_roles, dependent: :destroy
