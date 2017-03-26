@@ -34,6 +34,9 @@ gem "pundit"
 # Google oauth2 is by far the easiest way to do this
 gem "omniauth-google-oauth2", "~> 0.4.1"
 
+# Handles cron jobs
+gem 'whenever', :require => false
+
 ################################################
 #               No longer mine                 #
 ################################################
