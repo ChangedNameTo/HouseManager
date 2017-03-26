@@ -2,6 +2,7 @@ class CreateMeals < ActiveRecord::Migration[5.0]
   def change
     create_table :meals do |t|
       t.string :name, null: false
+      t.time :time, null: false
 
       t.timestamps
     end
@@ -10,13 +11,16 @@ class CreateMeals < ActiveRecord::Migration[5.0]
 
     meals = [
       {
-        name: "Breakfast"
+        name: "Breakfast",
+        time: '7:00 AM'
       },
       {
-        name: "Lunch"
+        name: "Lunch",
+        time: '11:00 AM'
       },
       {
-        name: "Dinner"
+        name: "Dinner",
+        time: '5:30 PM'
       }
     ]
 
