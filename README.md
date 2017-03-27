@@ -35,3 +35,11 @@ Everything should be good to go. Open a console in another window and do:
 `rails s`
 
 This starts the server. To visit, go to http://localhost:3000
+---
+On the to do list:
+* Late plates
+* Chores
+* Study Hours
+* Service Hours
+* File Hosting
+* Maintenance Requests
