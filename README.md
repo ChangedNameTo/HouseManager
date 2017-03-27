@@ -1,25 +1,37 @@
-# README
+# House Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Everything you need to set up house manager. Stuff for Will
 
-Things you may want to cover:
+AWS Setup: Do this shit when you want to deploy: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_Ruby_rails.html
 
-* Ruby version
+https://www.sitepoint.com/deploy-your-rails-app-to-aws/
 
-* System dependencies
+Firstly install PostgreSQL, none of this stuff works without it.
 
-* Configuration
+Then install RVM, this will let you get ruby installed.
 
-* Database creation
+Install bundler after installing ruby (not jruby)
 
-* Database initialization
+`gem install bundler`
 
-* How to run the test suite
+Clone the app into your folder.
 
-* Services (job queues, cache servers, search engines, etc.)
+Install the gems using bundler
 
-* Deployment instructions
+`bundle install`
 
-* ...
-# HouseManager
+If bundler freaks out at you, do this:
+
+`sudo su - u (YOUR USER NAME HERE NO PARENS) 'bundle install'`
+
+Run the migrations so that the db has data. You will probably have to create a role for your user account. Google how to do that. Give yourself a ton of perms so that you can create/delete dbs and what not.
+
+```
+rails db:create
+rails db:migrate
+```
+Everything should be good to go. Open a console in another window and do:
+
+`rails s`
+
+This starts the server. To visit, go to http://localhost:3000
