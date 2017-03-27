@@ -19,10 +19,14 @@
 
   <div class="form-group">
     <%= f.label :day %>
-    <%= f.date_select :day, {order: [:day, :month, :year]} %>
+		<%= f.text_field :day, :id => "datepicker", :value => Date.today %>
   </div>
 
   <div>
     <%= f.submit 'Submit', :class => 'btn btn-default' %>
   </div>
 <% end %>
+
+<script>
+$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+</script>
