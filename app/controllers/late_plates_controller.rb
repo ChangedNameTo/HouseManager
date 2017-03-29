@@ -11,9 +11,13 @@ class LatePlatesController < ApplicationController
 
   def create
     @late_plate = LatePlate.new(late_plate_params)
+      if current_user
+        @late_plate.requester = current_user.id
+        @late_plate.organization_id = current_user.affiliated_organization
+      end
 
     if @late_plate.save
-      redirect_to @late_plate
+      render 'index'
     else
       render 'new'
     end
@@ -48,10 +52,11 @@ class LatePlatesController < ApplicationController
 
   def late_plate_params
     params.require(:late_plate).permit(
+      :meal_id,
       :day,
-      :meal,
       :completed,
-      :requester
+      :requester,
+      :organization_id
     )
   end
 

@@ -14,8 +14,8 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :meal %>
-    <%= f.collection_select( :meal, Meal.all, :id, :meal_name, {}, {:class=>'form-control'}) %>
+    <%= f.label :meal_id %>
+    <%= f.collection_select( :meal_id, Meal.all, :id, :meal_name, {prompt: "Meal"}, {:class=>'form-control'}) %>
   </div>
 
   <div class="form-group">

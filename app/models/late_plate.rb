@@ -1,7 +1,7 @@
 class LatePlate < ApplicationRecord
   belongs_to :user, foreign_key: 'requester'
+  belongs_to :organization, foreign_key: 'organization_id'
   has_one :meal, foreign_key: 'meal'
-  has_one :organization, foreign_key: 'organization'
 
   def current_meal_requests
     late_plates = []

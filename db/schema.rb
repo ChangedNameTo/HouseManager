@@ -16,14 +16,15 @@ ActiveRecord::Schema.define(version: 7) do
   enable_extension "plpgsql"
 
   create_table "late_plates", force: :cascade do |t|
-    t.date     "day",                          null: false
-    t.boolean  "completed",    default: false, null: false
-    t.integer  "meal",                         null: false
-    t.integer  "requester",                    null: false
-    t.integer  "organization",                 null: false
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.date     "day",                             null: false
+    t.boolean  "completed",       default: false, null: false
+    t.integer  "meal_id",                         null: false
+    t.integer  "requester",                       null: false
+    t.integer  "organization_id",                 null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["day"], name: "index_late_plates_on_day", using: :btree
+    t.index ["meal_id"], name: "index_late_plates_on_meal_id", using: :btree
   end
 
   create_table "meals", force: :cascade do |t|
@@ -84,8 +85,8 @@ ActiveRecord::Schema.define(version: 7) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
   end
 
-  add_foreign_key "late_plates", "meals", column: "meal", name: "fk_late_plate_meal"
-  add_foreign_key "late_plates", "organizations", column: "organization", name: "fk_late_plate_organization"
+  add_foreign_key "late_plates", "meals", name: "fk_late_plate_meal"
+  add_foreign_key "late_plates", "organizations", name: "fk_late_plate_organization_id"
   add_foreign_key "late_plates", "users", column: "requester", name: "fk_late_plate_requester"
   add_foreign_key "organizations", "users", column: "house_manager", name: "fk_house_manager"
   add_foreign_key "organizations", "users", column: "kitchen_manager", name: "fk_kitchen_manager"
