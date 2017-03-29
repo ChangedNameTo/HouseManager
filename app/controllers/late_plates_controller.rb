@@ -17,7 +17,7 @@ class LatePlatesController < ApplicationController
       end
 
     if @late_plate.save
-      render 'index'
+      redirect_to action: "index"
     else
       render 'new'
     end
