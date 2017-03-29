@@ -6,6 +6,6 @@ class Meal < ApplicationRecord
   end
 
   def short_time
-    time.to_s(:time)
+    time.strftime("%I:%M %p")
   end
 end

@@ -17,10 +17,18 @@
       </tr>
       <% @late_plates.each do |late_plate| %>
         <tr>
-          <td><%= late_plate.requester %></td>
-          <td><%= late_plate.meal_id %></td>
-          <td><%= late_plate.day %></td>
-          <td><%= late_plate.completed %></td>
+          <td><%= late_plate.requester_name %></td>
+          <td><%= late_plate.meal_name %></td>
+          <td><%= late_plate.day.strftime("%m/%d/%Y") %></td>
+          <% if late_plate.completed %>
+          <td>
+            <div class="label label-success">Done</div>
+          </td>
+          <% else %>
+          <td>
+            <div class="label label-info">Not yet done</div>
+          </td>
+          <% end %>
           <td class="btn-group" role="group" aria-label="...">
             <%= link_to "Show", late_plate_path(late_plate), :class => "btn btn-primary" %>
             <%= link_to "Edit", edit_late_plate_path(late_plate), :class => "btn btn-success" %>
