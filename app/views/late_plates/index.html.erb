@@ -2,12 +2,16 @@
 
 <div class="container theme-showcase">
   <div style="text-align:left;">
-    <h1>Late Plate Requests
+    <h1>
+      Late Plates
+    </h1>
+    <h2>
+      Next Meal Requests
       <span style="float:right;">
         <%= link_to "Make a Late Plate Request", new_late_plate_path(), :class => "btn btn-primary" %>
       </span>
-    </h1>
-      <table class="table">
+    </h2>
+    <table class="table">
       <tr>
         <th>Name</th>
         <th>Meal</th>
@@ -30,13 +34,45 @@
           </td>
           <% end %>
           <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Show", late_plate_path(late_plate), :class => "btn btn-primary" %>
-            <%= link_to "Edit", edit_late_plate_path(late_plate), :class => "btn btn-success" %>
             <%= link_to "Delete", late_plate_path(late_plate),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
           </td>
         </tr>
       <% end %>
-  </table>
+    </table>
+    <% if current_user.current_meal_requests.present? %>
+    <h2>
+      My Future Meal Requests
+    </h2>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Meal</th>
+        <th>Day</th>
+        <th>Completed</th>
+        <th>Actions</th>
+      </tr>
+      <% current_user.my_meal_requests.each do |late_plate| %>
+        <tr>
+          <td><%= late_plate.requester_name %></td>
+          <td><%= late_plate.meal_name %></td>
+          <td><%= late_plate.day.strftime("%m/%d/%Y") %></td>
+          <% if late_plate.completed %>
+          <td>
+            <div class="label label-success">Done</div>
+          </td>
+          <% else %>
+          <td>
+            <div class="label label-info">Not yet done</div>
+          </td>
+          <% end %>
+          <td class="btn-group" role="group" aria-label="...">
+            <%= link_to "Delete", late_plate_path(late_plate),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <% end %>
+  </div>
 </div>
 
 <%= render 'layouts/footer' %>

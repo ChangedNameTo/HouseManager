@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # Associations
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles, dependent: :destroy
+  has_many :late_plates, dependent: :destroy
   belongs_to :organization, optional: true
 
   # Validation
@@ -41,6 +42,10 @@ class User < ApplicationRecord
     end
 
     false
+  end
+
+  def current_meal_requests
+    LatePlate.where(requester: self.id)
   end
 
 	def self.from_omniauth(auth)

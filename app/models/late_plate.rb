@@ -11,17 +11,7 @@ class LatePlate < ApplicationRecord
     Meal.find(self.meal_id).meal_name
   end
 
-  def current_meal_requests
-    late_plates = []
-    late_plates.concat(get_current_meal_requests(self))
-  end
-
-  def get_current_meal_requests(organization)
-    requests = []
-    LatePlate.where(organization: self.id).each do |request|
-      requests.append(request)
-    end
-
-    requests
+  def future_meal_requests
+    meals = Meals.where(organization: current_user.affiliated_organization)
   end
 end
