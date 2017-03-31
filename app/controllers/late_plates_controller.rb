@@ -41,9 +41,8 @@ class LatePlatesController < ApplicationController
     @late_plate = LatePlate.find(params[:id])
   end
 
-  def delete
-    @late_plate = LatePlate.find(params[:id])
-    @late_plate.destroy
+  def destroy
+    LatePlate.find(params[:id]).delete
 
     redirect_to late_plates_path
   end

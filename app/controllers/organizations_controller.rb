@@ -37,9 +37,8 @@ class OrganizationsController < ApplicationController
     @organization = Organization.find(params[:id])
   end
 
-  def delete
-    @organization = Organization.find(params[:id])
-    @organization.destroy
+  def destroy
+    Organization.find(params[:id]).delete
 
     redirect_to organizations_path
   end
