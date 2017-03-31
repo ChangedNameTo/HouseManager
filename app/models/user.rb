@@ -44,10 +44,6 @@ class User < ApplicationRecord
     false
   end
 
-  def current_meal_requests
-    LatePlate.where(requester: self.id)
-  end
-
 	def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.email_address = auth.info.email

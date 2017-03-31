@@ -1,10 +1,10 @@
 class LatePlate < ApplicationRecord
-  belongs_to :user, foreign_key: 'requester'
+  belongs_to :user, foreign_key: 'user_id'
   belongs_to :organization, foreign_key: 'organization_id'
   has_one :meal, foreign_key: 'meal'
 
   def requester_name
-    User.find(self.requester).full_name
+    User.find(self.user_id).full_name
   end
 
   def meal_name

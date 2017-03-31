@@ -39,7 +39,7 @@
         </tr>
       <% end %>
     </table>
-    <% if current_user.current_meal_requests.present? %>
+    <% if current_user.late_plates.present? %>
     <h2>
       My Future Meal Requests
     </h2>
@@ -51,7 +51,7 @@
         <th>Completed</th>
         <th>Actions</th>
       </tr>
-      <% current_user.my_meal_requests.each do |late_plate| %>
+      <% current_user.late_plates.each do |late_plate| %>
         <tr>
           <td><%= late_plate.requester_name %></td>
           <td><%= late_plate.meal_name %></td>

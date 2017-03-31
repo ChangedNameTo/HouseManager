@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 7) do
     t.date     "day",                             null: false
     t.boolean  "completed",       default: false, null: false
     t.integer  "meal_id",                         null: false
-    t.integer  "requester",                       null: false
+    t.integer  "user_id",                         null: false
     t.integer  "organization_id",                 null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 7) do
 
   add_foreign_key "late_plates", "meals", name: "fk_late_plate_meal"
   add_foreign_key "late_plates", "organizations", name: "fk_late_plate_organization_id"
-  add_foreign_key "late_plates", "users", column: "requester", name: "fk_late_plate_requester"
+  add_foreign_key "late_plates", "users", name: "fk_late_plate_requester"
   add_foreign_key "organizations", "users", column: "house_manager", name: "fk_house_manager"
   add_foreign_key "organizations", "users", column: "kitchen_manager", name: "fk_kitchen_manager"
   add_foreign_key "organizations", "users", column: "organization_manager", name: "fk_organization_manager"
