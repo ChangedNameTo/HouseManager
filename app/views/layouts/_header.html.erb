@@ -20,6 +20,10 @@
         <li>
           <%= link_to 'Organizations', organizations_path %>
         </li>
+        <% else %>
+        <li>
+          <%= link_to 'My Organization', organization_path(current_user.affiliated_organization) %>
+        </li>
         <% end %>
         <% if policy(:late_plate).index? %>
         <li>
