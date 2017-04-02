@@ -31,5 +31,8 @@
 <% end %>
 
 <script>
-$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+$('#datepicker').datetimepicker({
+  format: "MM-DD-YYYY",
+  minDate: moment(),
+});
 </script>

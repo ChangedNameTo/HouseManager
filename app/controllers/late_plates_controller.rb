@@ -11,10 +11,11 @@ class LatePlatesController < ApplicationController
 
   def create
     @late_plate = LatePlate.new(late_plate_params)
-      if current_user
-        @late_plate.user_id = current_user.id
-        @late_plate.organization_id = current_user.affiliated_organization
-      end
+
+    if current_user
+      @late_plate.user_id         = current_user.id
+      @late_plate.organization_id = current_user.affiliated_organization
+    end
 
     if @late_plate.save
       redirect_to action: "index"
