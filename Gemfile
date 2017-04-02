@@ -27,7 +27,8 @@ gem 'coffee-rails', '~> 4.2'
 # Bootstrap because I'm lazy and it looks good
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
-gem 'bootstrap-datepicker-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 # Pundit handles my access permissions for everything
 gem "pundit"

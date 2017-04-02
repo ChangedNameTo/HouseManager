@@ -41,10 +41,10 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (6.7.6)
       execjs
-    bootstrap-datepicker-rails (1.6.4.1)
-      railties (>= 3.0)
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
+    bootstrap3-datetimepicker-rails (4.17.47)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (9.0.6)
     chronic (0.10.2)
@@ -87,6 +87,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -189,13 +191,14 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
-  bootstrap-datepicker-rails
   bootstrap-sass (~> 3.2.0)
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  momentjs-rails (>= 2.9.0)
   omniauth-google-oauth2 (~> 0.4.1)
   pg (~> 0.18)
   puma (~> 3.0)
