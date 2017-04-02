@@ -21,8 +21,8 @@
   <div class="form-group">
     <%= f.label :time %>
     <div class="input-group">
-    <%= f.text_field :time, :id => "datepicker", :value => Date.today, :class=>'form-control' %>
-    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    <%= f.text_field :time, :id => "datepicker", :value => Time.now.strftime("%l:%M %p"), :class=>'form-control' %>
+    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
   </div>
   </br>
   <div>
@@ -31,5 +31,5 @@
 <% end %>
 
 <script>
-$('#datepicker').datepicker({format: 'LT'});
+$('#datepicker').datetimepicker({format: 'LT'});
 </script>
