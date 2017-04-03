@@ -12,6 +12,10 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
 
+    if current_user
+      @meal.organization_id = current_user.affiliated_organization
+    end
+
     if @meal.save
       redirect_to action: "index"
     else
@@ -30,7 +34,7 @@ class MealsController < ApplicationController
   end
 
   def index
-    @meals = policy_scope(Meal).all
+    @meals = policy_scope(Meal).where(organization_id: current_user.affiliated_organization)
   end
 
   def show

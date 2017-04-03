@@ -35,7 +35,7 @@ class LatePlatesController < ApplicationController
   end
 
   def index
-    @late_plates = policy_scope(LatePlate).all
+    @late_plates = policy_scope(LatePlate).where(organization_id: current_user.affiliated_organization)
   end
 
   def show
