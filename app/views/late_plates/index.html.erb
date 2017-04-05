@@ -34,7 +34,9 @@
           </td>
           <% end %>
           <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Delete", late_plate_path(meal_request),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
+            <% if current_user.id == meal_request.user_id %>
+              <%= link_to "Delete", late_plate_path(meal_request),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
+            <% end %>
           </td>
         </tr>
       <% end %>
