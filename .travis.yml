@@ -7,5 +7,5 @@ services:
 
 script:
   - gem install 'pg'
-  - rake db:create db:migrate db:schema:load --trace
+  - bundle exec rake db:create db:migrate db:schema:load --trace
 
