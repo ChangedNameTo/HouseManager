@@ -26,7 +26,7 @@
 
   <div class="form-group">
     <%= f.label :school %><br>
-    <%= f.text_area :school, class: 'form-control' %>
+    <%= f.text_field :school, class: 'form-control' %>
   </div>
 
   <div class="form-group">
@@ -35,6 +35,7 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :organization_manager %><br>
     <%= f.collection_select( :organization_manager, User.all, :id, :full_name, {}, {:class=>'form-control'}) %>
   </div>
 

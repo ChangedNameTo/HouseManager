@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # Associations
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles, dependent: :destroy
+  has_many :late_plates, dependent: :destroy
   belongs_to :organization, optional: true
 
   # Validation
@@ -26,6 +27,16 @@ class User < ApplicationRecord
   def has_role?(roles)
     roles.each do |role|
       if self.roles.include? role
+        return true
+      end
+    end
+
+    false
+  end
+
+  def is_member?(organization)
+    if self.affiliated_organization
+      if self.enabled
         return true
       end
     end
