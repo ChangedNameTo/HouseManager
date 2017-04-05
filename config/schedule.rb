@@ -18,3 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+# Sends out the email lists to the chefs or what not
+# every 5.minutes do
+#   runner "LatePlate.send_request_list"
+# end
