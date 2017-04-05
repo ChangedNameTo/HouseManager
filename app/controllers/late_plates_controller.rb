@@ -36,6 +36,16 @@ class LatePlatesController < ApplicationController
 
   def index
     @late_plates = policy_scope(LatePlate).where(organization_id: current_user.affiliated_organization)
+
+    sql = "SELECT *
+             FROM late_plates
+            WHERE meal_id
+               IN (SELECT id
+                     FROM meals
+                    WHERE time > LOCALTIME
+                 ORDER BY abs(extract(epoch from LOCALTIME - time))
+                    LIMIT 1);"
+    @next_meals_plates = LatePlate.find_by_sql(sql)
   end
 
   def show

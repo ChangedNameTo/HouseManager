@@ -10,8 +10,4 @@ class LatePlate < ApplicationRecord
   def meal_name
     Meal.find(self.meal_id).meal_name
   end
-
-  def future_meal_requests
-    meals = Meals.where(organization: current_user.affiliated_organization)
-  end
 end

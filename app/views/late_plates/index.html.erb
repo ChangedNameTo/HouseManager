@@ -19,12 +19,12 @@
         <th>Completed</th>
         <th>Actions</th>
       </tr>
-      <% @late_plates.each do |late_plate| %>
+      <% @next_meals_plates&.each do |meal_request| %>
         <tr>
-          <td><%= late_plate.requester_name %></td>
-          <td><%= late_plate.meal_name %></td>
-          <td><%= late_plate.day.strftime("%m/%d/%Y") %></td>
-          <% if late_plate.completed %>
+          <td><%= meal_request.requester_name %></td>
+          <td><%= meal_request.meal_name %></td>
+          <td><%= meal_request.day.strftime("%m/%d/%Y") %></td>
+          <% if meal_request.completed %>
           <td>
             <div class="label label-success">Done</div>
           </td>
@@ -34,7 +34,7 @@
           </td>
           <% end %>
           <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Delete", late_plate_path(late_plate),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
+            <%= link_to "Delete", late_plate_path(meal_request),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
           </td>
         </tr>
       <% end %>
