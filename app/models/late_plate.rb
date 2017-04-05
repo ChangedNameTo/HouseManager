@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: late_plates
+#
+#  id              :integer          not null, primary key
+#  day             :date             not null
+#  completed       :boolean          default(FALSE), not null
+#  meal_id         :integer          not null
+#  user_id         :integer          not null
+#  organization_id :integer          not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class LatePlate < ApplicationRecord
   belongs_to :user, foreign_key: 'user_id'
   belongs_to :organization, foreign_key: 'organization_id'
