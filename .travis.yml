@@ -11,5 +11,8 @@ services:
 
 script:
   - gem install 'pg'
-  - bundle exec rake db:create db:migrate db:schema:load --trace
+  - apt-get update
+  - bundle install
+  - RAILS_ENV=test bundle exec rake db:create db:migrate db:schema:load --trace
+  - bundle exec rspec
 
