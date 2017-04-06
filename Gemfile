@@ -20,10 +20,6 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-################################################
-# The above gems were default. These are mine. #
-################################################
-
 # Bootstrap because I'm lazy and it looks good
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
@@ -39,9 +35,11 @@ gem "omniauth-google-oauth2", "~> 0.4.1"
 # Handles cron jobs
 gem 'whenever', :require => false
 
-################################################
-#               No longer mine                 #
-################################################
+# I need refile cause my shit is breaking
+gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+gem 'refile', require: 'refile/rails', github: 'refile/refile'
+gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
+gem 'refile-s3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
