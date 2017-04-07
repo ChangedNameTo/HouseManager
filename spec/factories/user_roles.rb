@@ -12,7 +12,6 @@
 FactoryGirl.define do
   factory :user_role do
     user
-    creator
     role
   end
 end

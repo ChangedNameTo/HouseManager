@@ -10,10 +10,6 @@ describe UserRole do
     it_behaves_like 'a non nillable field'
   end
 
-  describe 'creator', field: :creator do
-    it_behaves_like 'a non nillable field'
-  end
-
   describe 'role', field: :role do
     it "is invalid without a unique role per user" do
       user_role = create(:user_role)
