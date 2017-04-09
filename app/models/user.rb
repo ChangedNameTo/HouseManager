@@ -37,6 +37,21 @@ class User < ApplicationRecord
   validates :email_address, presence: true,
     format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i, message: "Not a valid email address" }
 
+  validates :provider, presence: true
+
+  validates :uid, presence: true,
+    uniqueness: {
+      case_sensitive: false,
+      scope: :provider,
+      message: "UIDs must be unique"
+  }
+
+	validates :oauth_token,
+    presence: true
+
+  validates :oauth_expires_at,
+    presence: true
+
   # Helpers
 
   def full_name

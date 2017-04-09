@@ -18,7 +18,7 @@
 #
 
 FactoryGirl.define do
-  factory :user, aliases: [:creator] do
+  factory :user, aliases: [:creator, :organization_manager, :user_manager, :kitchen_manager, :house_manager, :service_manager, :scholarship_manager] do
     first_name       {Faker::Name.first_name}
     last_name        {Faker::Name.last_name}
     email_address    {Faker::Internet.email}
