@@ -20,8 +20,6 @@ class LatePlate < ApplicationRecord
   # Validation
   validates :day, presence: true
 
-  validates :completed, presence: true
-
   validates :meal_id, presence: true
 
   validates :user_id, presence: true
