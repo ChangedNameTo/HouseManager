@@ -17,17 +17,3 @@
 #  updated_at           :datetime         not null
 #
 
-FactoryGirl.define do
-  factory :organization, aliases: [:organization_id] do
-    full_name            {Faker::Lorem.word}
-    abbreviation         {Faker::Lorem.word}
-    school               {Faker::University.name}
-    address              {Faker::Address.street_address}
-    organization_manager
-    user_manager
-    kitchen_manager
-    house_manager
-    service_manager
-    scholarship_manager
-  end
-end

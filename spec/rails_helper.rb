@@ -6,7 +6,7 @@ require 'rspec/rails'
 require 'pundit/rspec'
 require 'refile/file_double'
 require 'factory_girl_rails'
-
+require 'capybara/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.after(:each) do
     Timecop.return
   end
+
 
   config.include FactoryGirl::Syntax::Methods
   config.infer_spec_type_from_file_location!

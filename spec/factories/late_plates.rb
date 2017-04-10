@@ -12,10 +12,11 @@
 #  updated_at      :datetime         not null
 #
 
-require 'test_helper'
-
-class LatePlateTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryGirl.define do
+  factory :late_plate do
+    day          {Faker::Date.between(2.days.ago, Date.today)}
+    completed    false
+    meal_id
+    user_id
+  end
 end

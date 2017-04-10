@@ -32,6 +32,9 @@ gem "pundit"
 # Google oauth2 is by far the easiest way to do this
 gem "omniauth-google-oauth2", "~> 0.4.1"
 
+# Figaro helps me test the omniauth shit
+gem 'figaro'
+
 # Handles cron jobs
 gem 'whenever', :require => false
 
@@ -84,6 +87,7 @@ group :test do
   gem 'faker',              '~> 1.6', '>= 1.6.6'
   gem 'database_cleaner',   '~> 1.5', '>= 1.5.3'
   gem 'shoulda-matchers',   '~> 3.1'
+  gem 'capybara'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

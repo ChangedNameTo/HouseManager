@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 7) do
     t.boolean  "completed",       default: false, null: false
     t.integer  "meal_id",                         null: false
     t.integer  "user_id",                         null: false
-    t.integer  "organization_id",                 null: false
+    t.integer  "organization_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.index ["day"], name: "index_late_plates_on_day", using: :btree
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 7) do
   create_table "meals", force: :cascade do |t|
     t.string   "name",            null: false
     t.time     "time",            null: false
-    t.integer  "organization_id", null: false
+    t.integer  "organization_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.index ["name"], name: "index_meals_on_name", unique: true, using: :btree

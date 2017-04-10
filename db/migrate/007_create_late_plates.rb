@@ -5,7 +5,7 @@ class CreateLatePlates < ActiveRecord::Migration[5.0]
       t.boolean :completed, default: false, null: false
       t.integer :meal_id, null: false
       t.integer :user_id, null: false
-      t.integer :organization_id, null: false
+      t.integer :organization_id
       t.timestamps
     end
 

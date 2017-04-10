@@ -64,6 +64,8 @@ class LatePlatesController < ApplicationController
   def late_plate_params
     params.require(:late_plate).permit(
       :meal_id,
+      :user_id,
+      :organization_id,
       :day
     )
   end
