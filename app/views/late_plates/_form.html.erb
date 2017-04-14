@@ -22,7 +22,9 @@
     <%= f.label :day %>
     <div class="input-group">
     <%= f.text_field :day, :id => "datepicker", :value => Date.today, :class=>'form-control' %>
-    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    <span class="input-group-addon">
+      <span class="glyphicon glyphicon-calendar"></span>
+    </span>
   </div>
   </br>
   <div>
@@ -32,7 +34,7 @@
 
 <script>
 $('#datepicker').datetimepicker({
-  format: "MM-DD-YYYY",
+  format: "DD-MM-YYYY",
   minDate: moment(),
 });
 </script>

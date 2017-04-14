@@ -20,10 +20,6 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-################################################
-# The above gems were default. These are mine. #
-################################################
-
 # Bootstrap because I'm lazy and it looks good
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
@@ -36,12 +32,17 @@ gem "pundit"
 # Google oauth2 is by far the easiest way to do this
 gem "omniauth-google-oauth2", "~> 0.4.1"
 
+# Figaro helps me test the omniauth shit
+gem 'figaro'
+
 # Handles cron jobs
 gem 'whenever', :require => false
 
-################################################
-#               No longer mine                 #
-################################################
+# I need refile cause my shit is breaking
+gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+gem 'refile', require: 'refile/rails', github: 'refile/refile'
+gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
+gem 'refile-s3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -60,6 +61,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
 	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
 	gem 'byebug', platform: :mri
+  gem 'timecop', '~> 0.8.1'
 end
 
 group :development do
@@ -69,6 +71,23 @@ group :development do
 	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 	gem 'spring'
 	gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Model annotation
+  gem 'annotate'
+
+  # Guard live reloads our webpages and helps me annotate my schemas
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem 'guard-annotate'
+end
+
+group :test do
+  gem 'rspec-rails',        '~> 3.5', '>= 3.5.2'
+  gem 'factory_girl_rails', '~> 4.7'
+  gem 'faker',              '~> 1.6', '>= 1.6.6'
+  gem 'database_cleaner',   '~> 1.5', '>= 1.5.3'
+  gem 'shoulda-matchers',   '~> 3.1'
+  gem 'capybara'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
