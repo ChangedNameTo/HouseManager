@@ -1,5 +1,7 @@
 # House Manager
 
+[![Build Status](https://travis-ci.com/ChangedNameTo/HouseManager.svg?token=qqCkJLAeTK6YUJHUyvdb&branch=master)](https://travis-ci.com/ChangedNameTo/HouseManager)
+
 Everything you need to set up house manager. Stuff for Will
 
 AWS Setup: Do this shit when you want to deploy: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_Ruby_rails.html
