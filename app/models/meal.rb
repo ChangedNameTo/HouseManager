@@ -13,6 +13,10 @@
 class Meal < ApplicationRecord
   has_many :late_plates
 
+  # Validation
+  validates :name, presence: true
+  validates :time, presence: true
+
   def meal_name
     "#{name} at #{short_time}"
   end

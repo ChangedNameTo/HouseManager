@@ -15,7 +15,7 @@
 class LatePlate < ApplicationRecord
   belongs_to :user, foreign_key: 'user_id'
   belongs_to :organization, foreign_key: 'organization_id'
-  has_one :meal, foreign_key: 'meal'
+  belongs_to :meal, foreign_key: 'meal_id'
 
   # Validation
   validates :day, presence: true
@@ -23,6 +23,8 @@ class LatePlate < ApplicationRecord
   validates :meal_id, presence: true
 
   validates :user_id, presence: true
+
+  validates :completed, :inclusion => {:in => [true, false]}
 
   def requester_name
     User.find(self.user_id).full_name

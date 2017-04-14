@@ -12,7 +12,7 @@
 
 FactoryGirl.define do
   factory :meal, aliases: [:meal_id] do
-    name         {Faker::Name.first_name}
-    time         {Faker::Time.between(DateTime.now - 1, DateTime.now)}
+    name {Faker::Name.first_name}
+    time {Faker::Time.between(DateTime.now - 1, DateTime.now)}
   end
 end

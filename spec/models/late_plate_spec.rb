@@ -37,31 +37,20 @@ describe LatePlate do
   end
 
 	describe 'requester_name' do
-    let(:user) { build(:user,
-      first_name: "Will",
-      last_name: "Mitchell"
-    ) }
-
-    let(:late_plate) { build(:late_plate,
-      user_id: :user
-    ) }
+    let(:late_plate) { FactoryGirl.create :late_plate }
 
     it "returns the requesters full name as a string" do
-      expect(late_plate.user_id).to eq "Will Mitchell"
+      name = User.find(late_plate[:user_id]).full_name
+      expect(late_plate.requester_name).to eq name
     end
   end
 
   describe "meal_name" do
+    let(:late_plate) { FactoryGirl.create :late_plate }
+
     it "returns the meal's name as a string" do
-      let(:meal) { build(:meal,
-        name: "Lunch"
-      ) }
-
-      let(:late_plate) { build(:late_plate,
-        meal_id: meal
-      ) }
-
-      expect(late_plate.meal_name).to eq "Lunch"
+      name = Meal.find(late_plate[:meal_id]).meal_name
+      expect(late_plate.meal_name).to eq name
     end
   end
 end

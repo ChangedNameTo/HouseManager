@@ -14,9 +14,10 @@
 
 FactoryGirl.define do
   factory :late_plate do
-    day          {Faker::Date.between(2.days.ago, Date.today)}
+    day          { Faker::Date.between(2.days.ago, Date.today) }
     completed    false
-    meal_id
-    user_id
+    meal
+    user
+    organization
   end
 end
