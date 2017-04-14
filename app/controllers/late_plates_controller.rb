@@ -11,6 +11,7 @@ class LatePlatesController < ApplicationController
 
   def create
     @late_plate = LatePlate.new(late_plate_params)
+    @late_plate.day = DateTime.parse(late_plate_params[:day])
 
     if current_user
       @late_plate.user_id         = current_user.id
@@ -63,10 +64,9 @@ class LatePlatesController < ApplicationController
   def late_plate_params
     params.require(:late_plate).permit(
       :meal_id,
-      :day,
-      :completed,
       :user_id,
-      :organization_id
+      :organization_id,
+      :day
     )
   end
 
