@@ -12,4 +12,8 @@ $(document).on('turbolinks:load', ->
         $('.provisional_deny').click();
         location.reload();
     )
+
+    $('.btn').on('click', ->
+        location.reload();
+    )
 )
