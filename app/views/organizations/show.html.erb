@@ -34,6 +34,10 @@
     <% if @organization.provisional_members.present? %>
     <h2>
       Provisional Members
+      <span style="float:right;">
+        <button id="approve_all" class="btn btn-success">Approve All</button>
+        <button id="deny_all" class="btn btn-danger">Deny All</button>
+      </span>
     </h2>
     <table class="table">
       <tr>
@@ -50,8 +54,8 @@
           <td><%= user.email_address %></td>
           <td><%= user.phone_number %></td>
           <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Approve", user_organization_enable_path(user.id, enabled: true), method: :put, :class =>"btn btn-success" %>
-            <%= link_to "Deny", user_organization_disable_path(user.id, affiliated_organization: nil), method: :put, :class => "btn btn-danger"%>
+            <%= link_to "Approve", user_organization_enable_path(user.id, enabled: true), method: :put, :class =>"provisional_approve btn btn-success" %>
+            <%= link_to "Deny", user_organization_disable_path(user.id, affiliated_organization: nil), method: :put, :class => "provisional_deny btn btn-danger"%>
           </td>
         </tr>
       <% end %>
