@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       redirect_to authenticate_path
     end
 
-    @late_plates = policy_scope(LatePlate).where(organization_id: current_user.affiliated_organization)
+    #@late_plates = policy_scope(LatePlate).where(organization_id: current_user.affiliated_organization)
 
     sql = "SELECT *
              FROM late_plates

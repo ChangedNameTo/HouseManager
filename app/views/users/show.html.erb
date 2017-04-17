@@ -1,10 +1,11 @@
 <%= render 'layouts/header' %>
 
 <div class="container theme-showcase">
+  <h1 align="center">
+    <%= @user.full_name %>
+  </h1>
+  <%= image_tag @user.image, class: 'img-circle' %>
   <div style="text-align:left;">
-    <h1>
-      <%= @user.full_name %>
-    </h1>
     <div>
       <p>
         <strong>Phone Number:</strong>
