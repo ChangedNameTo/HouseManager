@@ -33,4 +33,12 @@ class LatePlate < ApplicationRecord
   def meal_name
     Meal.find(self.meal_id).meal_name
   end
+
+  def better_date
+    day.strftime("%m/%d/%Y")
+  end
+
+  def full_name
+    "#{meal_name} on #{better_date}"
+  end
 end

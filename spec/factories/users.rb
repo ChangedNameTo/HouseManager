@@ -15,6 +15,9 @@
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  affiliated_organization :integer
+#  image                   :string
+#  number                  :integer
+#  big                     :integer
 #
 
 FactoryGirl.define do

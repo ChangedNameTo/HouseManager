@@ -1,10 +1,13 @@
 <%= render 'layouts/header' %>
 
 <div class="container theme-showcase">
+  <h1 align="center">
+    <%= @user.full_name %>
+  </h1>
+  <div align="center">
+    <%= image_tag @user.image, class: 'img-circle', size: '256' %>
+  </div>
   <div style="text-align:left;">
-    <h1>
-      <%= @user.full_name %>
-    </h1>
     <div>
       <p>
         <strong>Phone Number:</strong>
@@ -21,6 +24,14 @@
         <% else %>
           <%= "You are not currently affiliated with an organization" %>
         <% end %>
+      </p>
+      <p>
+        <strong>Number:</strong>
+        <%= @user.number || "--" %>
+      </p>
+      <p>
+        <strong>Big:</strong>
+        <%= @user.big || "--" %>
       </p>
     </div>
   </div>

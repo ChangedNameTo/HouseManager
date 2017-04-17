@@ -56,7 +56,7 @@ class Organization < ApplicationRecord
 
   def get_organization_members(user)
     members = []
-    User.where(affiliated_organization: self.id).where.not(affiliated_organization: nil).where(enabled: true).each do |member|
+    User.where(affiliated_organization: self.id).where(enabled: true).order(:number).each do |member|
       members.append(member)
     end
 

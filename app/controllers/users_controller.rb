@@ -44,12 +44,14 @@ class UsersController < ApplicationController
   def organization_enable
     @user = User.find(params[:user_id])
     @user.update_attributes(:enabled=> true)
+    UserRole.create(:user_id => @user[:id], :role_id => 8)
   end
 
   def organization_disable
     @user = User.find(params[:user_id])
     @user.update_attributes(:enabled=> false)
     @user.update_attributes(:affiliated_organization=> nil)
+    @user_roles = UserRole.where(user_id: params[:user_id]).destroy_all
   end
 
   private
@@ -59,6 +61,9 @@ class UsersController < ApplicationController
                                  :last_name,
                                  :email_address,
                                  :phone_number,
-                                 :affiliated_organization)
+                                 :affiliated_organization,
+                                 :big,
+                                 :image,
+                                 :number)
   end
 end

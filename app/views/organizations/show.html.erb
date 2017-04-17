@@ -34,9 +34,14 @@
     <% if @organization.provisional_members.present? %>
     <h2>
       Provisional Members
+      <span style="float:right;">
+        <button id="approve_all" class="btn btn-success">Approve All</button>
+        <button id="deny_all" class="btn btn-danger">Deny All</button>
+      </span>
     </h2>
     <table class="table">
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Email Address</th>
         <th>Phone Number</th>
@@ -44,12 +49,13 @@
       </tr>
       <% @organization.provisional_members.each do |user| %>
         <tr>
+          <td><%= image_tag user.image, class: 'img-circle', size: '32' %></td>
           <td><%= user.full_name %></td>
           <td><%= user.email_address %></td>
           <td><%= user.phone_number %></td>
           <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Approve", user_organization_enable_path(user.id, enabled: true), method: :put, :class =>"btn btn-success" %>
-            <%= link_to "Deny", user_organization_disable_path(user.id, affiliated_organization: nil), method: :put, :class => "btn btn-danger"%>
+            <%= link_to "Approve", user_organization_enable_path(user.id, enabled: true), method: :put, :class =>"provisional_approve btn btn-success" %>
+            <%= link_to "Deny", user_organization_disable_path(user.id, affiliated_organization: nil), method: :put, :class => "provisional_deny btn btn-danger"%>
           </td>
         </tr>
       <% end %>
@@ -60,6 +66,8 @@
     </h2>
     <table class="table">
       <tr>
+        <th></th>
+        <th>Number</th>
         <th>Name</th>
         <th>Email Address</th>
         <th>Phone Number</th>
@@ -67,6 +75,8 @@
       </tr>
       <% @organization.organization_members.each do |user| %>
         <tr>
+          <td><%= image_tag user.image, class: 'img-circle', size: '32' %></td>
+          <td><%= user.number %></td>
           <td><%= user.full_name %></td>
           <td><%= user.email_address %></td>
           <td><%= user.phone_number %></td>
