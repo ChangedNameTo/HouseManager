@@ -37,6 +37,7 @@
     </h2>
     <table class="table">
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Email Address</th>
         <th>Phone Number</th>
@@ -44,6 +45,7 @@
       </tr>
       <% @organization.provisional_members.each do |user| %>
         <tr>
+          <td><%= image_tag user.image, class: 'img-circle', size: '32' %></td>
           <td><%= user.full_name %></td>
           <td><%= user.email_address %></td>
           <td><%= user.phone_number %></td>
@@ -60,6 +62,7 @@
     </h2>
     <table class="table">
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Email Address</th>
         <th>Phone Number</th>
@@ -67,6 +70,7 @@
       </tr>
       <% @organization.organization_members.each do |user| %>
         <tr>
+          <td><%= image_tag user.image, class: 'img-circle', size: '32' %></td>
           <td><%= user.full_name %></td>
           <td><%= user.email_address %></td>
           <td><%= user.phone_number %></td>

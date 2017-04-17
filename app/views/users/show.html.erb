@@ -4,7 +4,9 @@
   <h1 align="center">
     <%= @user.full_name %>
   </h1>
-  <%= image_tag @user.image, class: 'img-circle' %>
+  <div align="center">
+    <%= image_tag @user.image, class: 'img-circle', size: '256' %>
+  </div>
   <div style="text-align:left;">
     <div>
       <p>
