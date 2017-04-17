@@ -39,12 +39,12 @@
     <%= f.collection_select( :affiliated_organization, Organization.all, :id, :chapter_school, {prompt: "Select your Organization", :selected => (@user.affiliated_organization)}, {:class=>'form-control'}) %>
   </div>
 
+  <% if current_user.affiliated_organization and current_user.enabled %>
   <div class="form-group">
     <%= f.label :number %><br>
     <%= f.text_field :number, class: 'form-control' %>
   </div>
 
-  <% if current_user.affiliated_organization and current_user.enabled %>
   <div class="form-group">
     <%= f.label :big %><br>
     <%= f.collection_select( :big, User.where(affiliated_organization: current_user.affiliated_organization), :id, :full_name, {prompt: "Big", :selected => (@user.big)}, {:class=>'form-control'}) %>

@@ -4,16 +4,16 @@
 $(document).on('turbolinks:load', ->
     # Approves all of the provisional members
     $('#approve_all').on('click', ->
-        $('.provisional_approve').click();
-        location.reload();
+        $('.provisional_approve').click()
+        location.reload()
     )
 
     $('#deny_all').on('click', ->
-        $('.provisional_deny').click();
-        location.reload();
+        $('.provisional_deny').click()
+        location.reload(true)
     )
 
     $('.btn').on('click', ->
-        location.reload();
+        location.reload(true)
     )
 )
