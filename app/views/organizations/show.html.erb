@@ -63,6 +63,7 @@
     <table class="table">
       <tr>
         <th></th>
+        <th>Number</th>
         <th>Name</th>
         <th>Email Address</th>
         <th>Phone Number</th>
@@ -71,6 +72,7 @@
       <% @organization.organization_members.each do |user| %>
         <tr>
           <td><%= image_tag user.image, class: 'img-circle', size: '32' %></td>
+          <td><%= user.number %></td>
           <td><%= user.full_name %></td>
           <td><%= user.email_address %></td>
           <td><%= user.phone_number %></td>

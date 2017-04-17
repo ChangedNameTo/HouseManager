@@ -59,6 +59,9 @@ class UsersController < ApplicationController
                                  :last_name,
                                  :email_address,
                                  :phone_number,
-                                 :affiliated_organization)
+                                 :affiliated_organization,
+                                 :big,
+                                 :image,
+                                 :number)
   end
 end

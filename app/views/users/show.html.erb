@@ -25,6 +25,14 @@
           <%= "You are not currently affiliated with an organization" %>
         <% end %>
       </p>
+      <p>
+        <strong>Number:</strong>
+        <%= @user.number || "--" %>
+      </p>
+      <p>
+        <strong>Big:</strong>
+        <%= @user.big || "--" %>
+      </p>
     </div>
   </div>
 </div>
