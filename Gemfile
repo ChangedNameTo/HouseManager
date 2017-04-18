@@ -39,7 +39,7 @@ gem 'figaro'
 gem 'whenever', :require => false
 
 # I need refile cause my shit is breaking
-gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
+#gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 gem 'refile', require: 'refile/rails', github: 'refile/refile'
 gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
 gem 'refile-s3'
