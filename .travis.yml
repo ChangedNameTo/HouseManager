@@ -1,16 +1,23 @@
 branches:
   only:
-    - master
-
+  - master
 language: ruby
 rvm:
-  - 2.3.1
-
+- 2.3.1
 services:
-  - postgresql
-
+- postgresql
 script:
-  - gem install 'pg'
-  - bundle install
-  - RAILS_ENV=test bundle exec rake db:create db:migrate db:schema:load --trace
-  - bundle exec rspec
+- gem install 'pg'
+- bundle install
+- RAILS_ENV=test bundle exec rake db:create db:migrate db:schema:load --trace
+- bundle exec rspec
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: AKIAJK63P3YTRMQHVUVA
+  secret_access_key:
+    secure: O3uxbRL/4EJszAZMN9gq5VMcBjDMWrewsS+wxnY2T1l6PuuzsZfUpZuKgvJXUOyrN5QwR4eCbkEkFVHm7z3tL1e440X4QAk5wTxeRUs5goaXRhtileWGMvYnc84/zxSrYI8/IVKCvG7xxGKu/8wyzkYmvXnzmDU527nsyk3vBTOOUBIB9edDqeQaSAQxzXDfA8wQsllZGwshAvS55wUnNXTLJyX3aQcmRYPcWFhtnT4KWwII75LD81T0PjzU8yYJX1cEx4KIletVGnUgh+kzuvZlFQbaU9Mnu3mMdjQjevzIVOWaYrAB+ByROcKJe0+ljm1nDK29pHFnt7JLzH+7N6+CDrpppKsPdyW+u3XK5tJiYKvT3n7XOA6FPM5f7sg6SU2mcDXca6gZhOvWidoRJoG6rda+NN/0SH0q/h/Ld0ytUxD7TrvvV3ka9WekmoD+uU22szzDLqFBE2/RB9FW+THgR699jM2Ln+kygSXlP/LD6OlvxY/s8Idjfo/UHjGpNxOs5OmA1fmECtnSxjcRMqz4XdGpT7G8FppR/74PFtM1BUn02GSrSTmxI+oIZTZPF/BAiM551hcnyNHOW1/ZD2DTCu1PMzgOdcAxL+Xitot8sisILu1d0XUvmHe3hkBhxqS/4kS5sHrqGBiUMJfO6zp4zSueOwu/jAJ3kLEiaBI=
+  region: us-east-1
+  app: HouseManager
+  env: production
+  on:
+    repo: ChangedNameTo/HouseManager
