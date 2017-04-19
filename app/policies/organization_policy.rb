@@ -10,7 +10,7 @@ class OrganizationPolicy < ApplicationPolicy
   end
 
   def show?
-    index?
+    user.has_role?(Role.where(label: ['System Admin', 'Member']))
   end
 
   def create?

@@ -26,7 +26,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    update_positions? or user == record
+    user.has_role?(Role.where(label: ['System Admin'])) or user.record
   end
 
   def show_private_info?
