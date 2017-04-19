@@ -13,6 +13,7 @@ before_script:
   - apt-get update -qy
   - apt-get install -y nodejs # requires JS runtime
   - bundle install
+  - RAILS_ENV=test bundle exec rake db:create db:migrate db:schema:load --trace
 
 # add a job called 'test' -> non-required
 test:
