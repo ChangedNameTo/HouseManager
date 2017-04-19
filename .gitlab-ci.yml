@@ -1,0 +1,23 @@
+# requiring the environment of Ruby 2.3.1
+image: ruby:2.3.1
+services:
+  - postgres
+
+# add bundle cache to 'vendor' for speeding up builds
+cache:
+  paths: 
+    - vendor/
+
+before_script:
+  - gem install pg
+  - apt-get update -qy
+  - apt-get install -y nodejs # requires JS runtime
+  - bundle install
+
+# add a job called 'test' -> non-required
+test:
+  stage: test
+  script:
+    - bundle exec rspec
+  except:
+    - master # the 'test' job will affect all branches expect 'master'
