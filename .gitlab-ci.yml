@@ -1,12 +1,11 @@
 image: ruby:2.3
 
 services:
-  - postgres
+  - postgres:9.4
 
 variables:
   POSTGRES_DB: housemanager_test
   POSTGRES_USER: runner
-  POSTGRES_PASSWORD: ""
   RAILS_ENV: test
 
 cache:
@@ -17,6 +16,7 @@ before_script:
   - ruby -v
   - which ruby
   - gem install pg
+  - which psql
   - apt-get update -qy
   - apt-get install -y nodejs
   - gem install bundler --no-ri --no-rdoc
