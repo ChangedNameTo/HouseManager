@@ -16,6 +16,9 @@ cache:
 before_script:
   - ruby -v
   - which ruby
+  - gem install pg
+  - apt-get update -qy
+  - apt-get install -y nodejs
   - gem install bundler --no-ri --no-rdoc
   - bundle check --path vendor/bundle || bundle install --path vendor/bundle --jobs $(nproc)
 
