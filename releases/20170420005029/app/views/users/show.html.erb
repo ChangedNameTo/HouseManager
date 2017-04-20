@@ -1,0 +1,40 @@
+<%= render 'layouts/header' %>
+
+<div class="container theme-showcase">
+  <h1 align="center">
+    <%= @user.full_name %>
+  </h1>
+  <div align="center">
+    <%= image_tag @user.image, class: 'img-circle', size: '256' %>
+  </div>
+  <div style="text-align:left;">
+    <div>
+      <p>
+        <strong>Phone Number:</strong>
+        <%= @user.phone_number %>
+      </p>
+      <p>
+        <strong>Email Address:</strong>
+        <%= @user.email_address || "--" %>
+      </p>
+      <p>
+        <strong>Organization:</strong>
+        <% if @user.affiliated_organization %>
+          <%= Organization.find(@user.affiliated_organization).chapter_school %>
+        <% else %>
+          <%= "You are not currently affiliated with an organization" %>
+        <% end %>
+      </p>
+      <p>
+        <strong>Number:</strong>
+        <%= @user.number || "--" %>
+      </p>
+      <p>
+        <strong>Big:</strong>
+        <%= @user.big || "--" %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

@@ -1,0 +1,2 @@
+module LatePlatesHelper
+end

@@ -1,0 +1,52 @@
+<%= render 'layouts/header' %>
+
+<div class="container theme-showcase" >
+  <% if !current_user.affiliated_organization and !current_user.enabled %>
+  <h1 align="center">Welcome to House Manager!</h1>
+  <p>
+    It appears that you currently are not affiliated with an organization. To do so, go to user options and select your organization from the dropdown. Once your organization manager adds you, you'll be all set!
+  </p>
+  <% else  %>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 align="center">Upcoming Late Plates</h3>
+        </div>
+        <% if @late_plates %>
+        <% @late_plates.each do |late_plate| %>
+        <div class="panel-body">
+          <%= late_plate.full_name %>
+        </div>
+        <% end %>
+        <% else %>
+        <div class="panel-body">
+          You have no upcoming late plates.
+        </div>
+        <% end %>
+      </div>
+      <% if current_user.has_role?(Role.where(label: ['Organization Manager', 'House Manager'])) %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 align="center">Maintenance Requests</h3>
+        </div>
+      </div>
+      <% end %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 align="center">Upcoming Events</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <h2 align="center">Announcements</h2>
+    </div>
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<%= render 'layouts/footer' %>
