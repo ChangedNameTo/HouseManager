@@ -1,6 +1,6 @@
 # House Manager
 
-[![Build Status](https://travis-ci.com/ChangedNameTo/HouseManager.svg?token=qqCkJLAeTK6YUJHUyvdb&branch=master)](https://travis-ci.com/ChangedNameTo/HouseManager)
+[![build status](https://gitlab.com/william.m95/HouseManager/badges/master/build.svg)](https://gitlab.com/william.m95/HouseManager/commits/master)
 
 Everything you need to set up house manager. Stuff for Will
 
