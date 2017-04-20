@@ -15,8 +15,6 @@ cache:
 before_script:
   - ruby -v
   - which ruby
-  - apt-get install -y postgresql postgresql-client libpq-dev
-  - which psql
   - gem install pg
   - apt-get update -qy
   - apt-get install -y nodejs
