@@ -12,6 +12,8 @@ development:
 test:
   <<: *default
   database: housemanager_test
+  username: runner
+  password: ""
 
 production:
   <<: *default
