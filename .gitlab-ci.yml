@@ -25,7 +25,8 @@ before_script:
 test:
   stage: test
   script:
-    - bundle exec rake db:create db:schema:load db:migrate RAILS_ENV=test --trace
+    - bundle exec rake db:create RAILS_ENV=test --trace
+    - bundle exec rake db:migrate RAILS_ENV=test --trace
     - bundle exec rspec
 
 deploy:
