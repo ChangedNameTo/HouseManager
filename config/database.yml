@@ -11,7 +11,9 @@ development:
 
 test:
   <<: *default
+  host: postgres
   database: housemanager_test
+  username: runner
 
 production:
   <<: *default
