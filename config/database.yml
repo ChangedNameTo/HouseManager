@@ -14,7 +14,8 @@ test:
   host: localhost
   database: housemanager_test
   username: runner
-  password: ""
+  password:
+  hostname: 127.0.0.1
 
 production:
   <<: *default
