@@ -11,6 +11,5 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 set :ssh_options, {
   forward_agent: true,
-  use_agent: false,
   keys: %(~/.ssh/)
 }
