@@ -30,7 +30,7 @@ class OrganizationsController < ApplicationController
   end
 
   def index
-    @organizations = policy_scope(Organization).all
+    @organizations = policy_scope(Organization).all.order(:id)
   end
 
   def show
