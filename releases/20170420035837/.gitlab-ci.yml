@@ -1,0 +1,40 @@
+image: ruby:2.3
+
+services:
+  - postgres:9.4
+
+variables:
+  POSTGRES_DB: housemanager_test
+  POSTGRES_USER: runner
+  RAILS_ENV: test
+
+cache:
+  paths:
+    - vendor/bundle
+
+before_script:
+  - ruby -v
+  - which ruby
+  - gem install pg
+  - apt-get update -qy
+  - apt-get install -y nodejs
+  - gem install bundler --no-ri --no-rdoc
+  - bundle check --path vendor/bundle || bundle install --path vendor/bundle --jobs $(nproc)
+
+test:
+  stage: test
+  script:
+    - RAILS_ENV=test bundle exec rake db:create --trace
+    - RAILS_ENV=test bundle exec rake db:migrate --trace
+    - bundle exec rspec
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - bundle exec cap production deploy
