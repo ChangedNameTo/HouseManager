@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = git@gitlab.com:william.m95/HouseManager.git
+	fetch = +refs/*:refs/*
+	mirror = true
