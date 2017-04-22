@@ -38,5 +38,6 @@ deploy:
     - chmod 600 ~/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     - gem install bundler --no-ri --no-rdoc
+    - bundle check --path vendor/bundle || bundle install --path vendor/bundle --jobs $(nproc)
     - gem install capistrano
     - bundle exec cap production deploy
