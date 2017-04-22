@@ -21,7 +21,7 @@
   <div class="form-group">
     <%= f.label :day %>
     <div class="input-group">
-    <%= f.text_field :day, :id => "datepicker", :value => Date.today, :class=>'form-control' %>
+    <%= f.text_field :day, :id => "datepicker", :value => Date.today.strftime("%d-%m-%Y"), :class=>'form-control' %>
     <span class="input-group-addon">
       <span class="glyphicon glyphicon-calendar"></span>
     </span>

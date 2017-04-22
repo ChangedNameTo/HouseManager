@@ -31,7 +31,7 @@
         <%= render 'organizations/roles_table' %>
       </div>
     </div>
-    <% if @organization.provisional_members.present? %>
+    <% if @organization.provisional_members.present? and current_user.has_role?(Role.where(label: ['System Admin', 'Organization Manager', 'User Manager']))%>
     <h2>
       Provisional Members
       <span style="float:right;">
@@ -82,8 +82,10 @@
           <td><%= user.phone_number %></td>
           <td class="btn-group" role="group" aria-label="...">
             <%= link_to "Show", user_path(user), :class => "btn btn-primary" %>
-            <%= link_to "Edit", edit_user_path(user), :class => "btn btn-success" %>
-            <%= link_to "Remove from Org", user_organization_disable_path(user.id, affiliated_organization: nil),  method: :put, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+            <% if current_user.has_role?(Role.where(label: ['System Admin', 'Organization Manager', 'User Manager'])) %>
+              <%= link_to "Edit", edit_user_path(user), :class => "btn btn-success" %>
+              <%= link_to "Remove from Org", user_organization_disable_path(user.id, affiliated_organization: nil),  method: :put, :class => "btn btn-danger", data: { confirm: 'Delete user?' } %>
+            <% end %>
           </td>
         </tr>
       <% end %>
