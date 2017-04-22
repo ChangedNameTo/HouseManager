@@ -37,5 +37,6 @@ deploy:
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - gem install bundler --no-ri --no-rdoc
     - gem install capistrano
     - bundle exec cap production deploy
