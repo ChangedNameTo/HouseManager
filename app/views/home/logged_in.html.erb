@@ -25,21 +25,8 @@
         </div>
         <% end %>
       </div>
-      <% if current_user.has_role?(Role.where(label: ['Organization Manager', 'House Manager'])) %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 align="center">Maintenance Requests</h3>
-        </div>
-      </div>
-      <% end %>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 align="center">Upcoming Events</h3>
-        </div>
-      </div>
     </div>
     <div class="col-sm-4">
-      <h2 align="center">Announcements</h2>
     </div>
     <div class="col-sm-4">
     </div>
