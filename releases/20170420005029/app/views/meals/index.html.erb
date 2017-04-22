@@ -1,0 +1,31 @@
+<%= render 'layouts/header' %>
+
+<div class="container theme-showcase">
+  <div style="text-align:left;">
+    <h1>
+      Meals
+      <span style="float:right;">
+        <%= link_to "Create a new meal time", new_meal_path(), :class => "btn btn-primary" %>
+      </span>
+    </h1>
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+      <% @meals.each do |meal| %>
+      <tr>
+        <td><%= meal.name %></td>
+        <td><%= meal.time.strftime("%l:%M %p") %></td>
+        <td class="btn-group" role="group" aria-label="...">
+          <%= link_to "Edit", edit_meal_path(meal), :class => "btn btn-success" %>
+          <%= link_to "Delete", meal_path(meal),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete meal time?' } %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>
