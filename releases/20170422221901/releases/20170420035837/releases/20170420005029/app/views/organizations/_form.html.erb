@@ -1,0 +1,46 @@
+<%= form_for @organization do |f| %>
+
+  <% if @organization.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@organization.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @organization.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :full_name %><br>
+    <%= f.text_field :full_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :abbreviation %><br>
+    <%= f.text_field :abbreviation, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :school %><br>
+    <%= f.text_field :school, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address %><br>
+    <%= f.text_area :address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :organization_manager %><br>
+    <%= f.collection_select( :organization_manager, User.all, :id, :full_name, {}, {:class=>'form-control'}) %>
+  </div>
+
+  <div>
+    <%= f.submit 'Submit', :class => 'btn btn-default' %>
+  </div>
+
+<% end %>
