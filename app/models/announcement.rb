@@ -44,14 +44,10 @@ class Announcement < ApplicationRecord
   private
 
   def send_new_announcement_email
-    users = User.where(affiliated_organization: self.organization_id)
-
-    users.each do |recipient|
-      # Need to make a notification table
-    end
+    users = User.where(affiliated_organization: self.organization_id).pluck(:email_address)
 
     NotificationMailer.new_announcement_email(
-      users.pluck(:email_address),
+      users,
       self.id
     ).deliver_later(wait: 1.seconds)
   end

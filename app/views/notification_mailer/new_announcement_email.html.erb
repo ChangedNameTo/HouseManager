@@ -7,7 +7,7 @@
     <h1><%= @announcement.title %></h1>
 
     <p>
-      <%= @announcement.body %>
+      <%= markdown(@announcement.body) %>
     </p>
 
     --
