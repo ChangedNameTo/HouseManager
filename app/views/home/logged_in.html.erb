@@ -79,10 +79,17 @@
                   <div class="ui segment">
                     <%= markdown(announcement.body) %>
 								  </div>
+                  <% if policy(announcement).update? %>
+                  <div class="row">
+                    <div class="column">
+                      <%= link_to "Edit Announcement", edit_announcement_path(announcement), class:"ui green fluid button" %>
+                    </div>
+                  </div>
+                  <% end %>
                 </div>
               </div>
+              <div class="ui divider"></div>
             <% end %>
-
           <% else %>
 
             <div class="ui center aligned segment">
