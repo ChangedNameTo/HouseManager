@@ -5,7 +5,6 @@ class LatePlatePolicy < ApplicationPolicy
     end
   end
 
-  # This is currently broken. As part of Users 2.0 member needs to be automatically assigned to someone.
   def index?
     user.has_role?(Role.where(label: ['System Admin', 'Member' ]))
   end
@@ -19,10 +18,10 @@ class LatePlatePolicy < ApplicationPolicy
   end
 
   def update?
-    index?
+    user.has_role?(Role.where(label: ['System Admin', 'Kitchen Manager', 'Organization Manager' ])) or user == record
   end
 
   def destroy?
-    user.has_role?(Role.where(label: ['System Admin', 'Kitchen Manager', 'Organization Manager' ]))
+    update?
   end
 end

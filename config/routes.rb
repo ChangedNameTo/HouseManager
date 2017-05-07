@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   # Users
   resources :users do
-    put :organization_enable, :organization_disable
+    put :organization_enable, :organization_disable, :organization_enable_all, :organization_disable_all
   end
 
   # User roles
@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   resources :roles
 
   # Organizations
-  resources :organizations
+  resources :organizations do
+    put :organization_enable_all, :organization_disable_all
+  end
 
   # Late Plates
   resources :late_plates
@@ -34,5 +36,7 @@ Rails.application.routes.draw do
   # Meals
   resources :meals
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # Announcements
+  resources :announcements
+
 end

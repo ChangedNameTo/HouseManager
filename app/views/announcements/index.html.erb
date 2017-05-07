@@ -1,0 +1,39 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="ui center aligned header">
+    Announcement List
+  </h1>
+  <div class="ui feed">
+    <% if @announcements.count > 0 %>
+
+      <% @announcements.each do |announcement| %>
+        <div class="event">
+          <div class="label">
+            <%= image_tag announcement.author_image %>
+          </div>
+          <div class="content">
+            <div class="summary">
+              <%= announcement.author_name%> posted '<%= link_to announcement.title, announcement %>'
+              <div class="date">
+                <%= time_ago_in_words(announcement.created_at) %> ago on <%= announcement.post_date %>
+              </div>
+            </div>
+            <div class="ui segment">
+              <%= announcement.body %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    <% else %>
+
+      <div class="ui center aligned segment">
+        <strong>No Announcements</strong>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

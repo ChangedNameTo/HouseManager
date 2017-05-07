@@ -21,8 +21,10 @@
 #
 
 class User < ApplicationRecord
+  # Callbacks
 
-  # Scopes
+  # This doesn't work atm
+  #after_commit :send_welcome_email, on: :create
 
   # Associations
   has_many :user_roles, dependent: :destroy
@@ -93,5 +95,20 @@ class User < ApplicationRecord
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end
+  end
+
+  private
+
+  def send_welcome_email
+    users = User.joins(:roles).where(roles: {label: ['Organization Manager', 'User Manager']}).where(affiliated_organization: self.affiliated_organization)
+
+    users.each do |recipient|
+      # Need to make a notification table
+    end
+
+    NotificationMailer.welcome_email(
+      users.pluck(:email_address),
+      self.id
+    ).deliver_later(wait: 1.seconds)
   end
 end

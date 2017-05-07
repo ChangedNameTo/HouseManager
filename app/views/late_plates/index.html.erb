@@ -1,79 +1,79 @@
 <%= render 'layouts/header' %>
 
-<div class="container theme-showcase">
-  <div style="text-align:left;">
-    <h1>
-      Late Plates
-    </h1>
-    <h2>
-      Next Meal Requests
-      <span style="float:right;">
-        <%= link_to "Make a Late Plate Request", new_late_plate_path(), :class => "btn btn-primary" %>
-      </span>
-    </h2>
-    <table class="table">
+<div class="ui container segment">
+  <h1 class="centered ui header">
+    Late Plates
+  </h1>
+  <h3 class="ui dividing header">
+    Next Meal Requests
+  </h3>
+  <table class="ui celled striped sortable five column table">
+    <tr>
+      <th align="center">Name</th>
+      <th align="center">Meal</th>
+      <th align="center">Day</th>
+      <th align="center">Completed</th>
+      <th align="center">Actions</th>
+    </tr>
+    <% @next_meals_plates&.each do |meal_request| %>
       <tr>
-        <th>Name</th>
-        <th>Meal</th>
-        <th>Day</th>
-        <th>Completed</th>
-        <th>Actions</th>
-      </tr>
-      <% @next_meals_plates&.each do |meal_request| %>
-        <tr>
-          <td><%= meal_request.requester_name %></td>
-          <td><%= meal_request.meal_name %></td>
-          <td><%= meal_request.day.strftime("%m/%d/%Y") %></td>
-          <% if meal_request.completed %>
-          <td>
-            <div class="label label-success">Done</div>
-          </td>
-          <% else %>
-          <td>
-            <div class="label label-info">Not yet done</div>
-          </td>
+        <td style="text-align:center;"><%= meal_request.requester_name %></td>
+        <td style="text-align:center;"><%= meal_request.meal_name %></td>
+        <td style="text-align:center;"><%= meal_request.day.strftime("%m/%d/%Y") %></td>
+        <% if meal_request.completed %>
+        <td style="text-align:center;">
+          <div class="ui green label">Done</div>
+        </td>
+        <% else %>
+        <td style="text-align:center;">
+          <div class="ui blue label">Not yet done</div>
+        </td>
+        <% end %>
+        <td style="text-align:center;">
+          <% if current_user.id == meal_request.user_id %>
+            <%= link_to "Delete", late_plate_path(meal_request),  method: :delete, :class => "ui red button", data: { confirm: 'Delete late plate request?' } %>
           <% end %>
-          <td class="btn-group" role="group" aria-label="...">
-            <% if current_user.id == meal_request.user_id %>
-              <%= link_to "Delete", late_plate_path(meal_request),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-    <% if current_user.late_plates.present? %>
-    <h2>
-      My Future Meal Requests
-    </h2>
-    <table class="table">
-      <tr>
-        <th>Name</th>
-        <th>Meal</th>
-        <th>Day</th>
-        <th>Completed</th>
-        <th>Actions</th>
+        </td>
       </tr>
-      <% current_user.late_plates.each do |late_plate| %>
-        <tr>
-          <td><%= late_plate.requester_name %></td>
-          <td><%= late_plate.meal_name %></td>
-          <td><%= late_plate.day.strftime("%m/%d/%Y") %></td>
-          <% if late_plate.completed %>
-          <td>
-            <div class="label label-success">Done</div>
-          </td>
-          <% else %>
-          <td>
-            <div class="label label-info">Not yet done</div>
-          </td>
-          <% end %>
-          <td class="btn-group" role="group" aria-label="...">
-            <%= link_to "Delete", late_plate_path(late_plate),  method: :delete, :class => "btn btn-danger", data: { confirm: 'Delete late plate request?' } %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
     <% end %>
+  </table>
+
+  <% if current_user.late_plates.present? %>
+
+  <h3 class="ui dividing header">
+    My Future Meal Requests
+  </h3>
+  <table class="ui celled striped sortable five column table">
+    <tr>
+      <th align="center">Name</th>
+      <th align="center">Meal</th>
+      <th align="center">Day</th>
+      <th align="center">Completed</th>
+      <th align="center">Actions</th>
+    </tr>
+    <% current_user.late_plates.each do |late_plate| %>
+      <tr>
+        <td style="text-align:center;"><%= late_plate.requester_name %></td>
+        <td style="text-align:center;"><%= late_plate.meal_name %></td>
+        <td style="text-align:center;"><%= late_plate.day.strftime("%m/%d/%Y") %></td>
+        <% if late_plate.completed %>
+        <td style="text-align:center;">
+          <div class="ui green label">Done</div>
+        </td>
+        <% else %>
+        <td style="text-align:center;">
+          <div class="ui blue label">Not yet done</div>
+        </td>
+        <% end %>
+        <td style="text-align:center;">
+          <%= link_to "Delete", late_plate_path(late_plate),  method: :delete, :class => "ui red button", data: { confirm: 'Delete late plate request?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <% end %>
+  <div>
+    <%= link_to "Make a Late Plate Request", new_late_plate_path(), :class => "ui primary fluid button" %>
   </div>
 </div>
 

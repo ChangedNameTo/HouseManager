@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 8) do
+ActiveRecord::Schema.define(version: 9) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "announcements", force: :cascade do |t|
+    t.string   "title",           null: false
+    t.string   "body",            null: false
+    t.integer  "author_id",       null: false
+    t.integer  "organization_id", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "late_plates", force: :cascade do |t|
     t.date     "day",                             null: false
@@ -89,6 +98,8 @@ ActiveRecord::Schema.define(version: 8) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
   end
 
+  add_foreign_key "announcements", "organizations", name: "fk_announcement_organization"
+  add_foreign_key "announcements", "users", column: "author_id", name: "fk_announcement_author"
   add_foreign_key "late_plates", "meals", name: "fk_late_plate_meal"
   add_foreign_key "late_plates", "organizations", name: "fk_late_plate_organization_id"
   add_foreign_key "late_plates", "users", name: "fk_late_plate_requester"

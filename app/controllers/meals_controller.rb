@@ -34,7 +34,7 @@ class MealsController < ApplicationController
   end
 
   def index
-    @meals = policy_scope(Meal).where(organization_id: current_user.affiliated_organization)
+    @meals = policy_scope(Meal).where(organization_id: current_user.affiliated_organization).order(time: :asc)
   end
 
   def show

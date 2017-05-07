@@ -1,39 +1,113 @@
 <%= render 'layouts/header' %>
 
-<div class="container theme-showcase" >
+<div class="ui container grid" >
+
   <% if !current_user.affiliated_organization and !current_user.enabled %>
+
   <h1 align="center">Welcome to House Manager!</h1>
   <p>
     It appears that you currently are not affiliated with an organization. To do so, go to user options and select your organization from the dropdown. Once your organization manager adds you, you'll be all set!
   </p>
+
   <% else  %>
+
   <div class="row">
-    <div class="col-sm-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 align="center">Upcoming Late Plates</h3>
+    <div class="four wide column">
+      <div class="ui segment">
+        <div class="ui center aligned header">
+          Upcoming Late Plates
         </div>
-        <% if @late_plates %>
-        <% @late_plates.each do |late_plate| %>
-        <div class="panel-body">
-          <%= late_plate.full_name %>
-        </div>
-        <% end %>
+        <% if @late_plates.count > 0 %>
+          <div class="ui bulleted list">
+          <% @late_plates.each do |late_plate| %>
+            <div class="item">
+              <%= late_plate.full_name %>
+            </div>
+          <% end %>
+          </div>
         <% else %>
-        <div class="panel-body">
+        <div class="item">
           You have no upcoming late plates.
         </div>
         <% end %>
       </div>
+
+      <% if current_user.has_role?(Role.where(label: ['Organization Manager', 'House Manager'])) %>
+
+      <div class="ui segment">
+        <div class="ui center aligned header">
+          Maintenance Requests
+        </div>
+        <div class="item">
+          Coming soon (~0.3).
+        </div>
+      </div>
+
+      <% end %>
+
+      <div class="ui segment">
+        <div class="ui center aligned header">
+          Upcoming Events
+        </div>
+        <div class="item">
+          Coming soon (~0.8).
+        </div>
+      </div>
     </div>
-    <div class="col-sm-4">
-    </div>
-    <div class="col-sm-4">
-    </div>
-    <div class="col-sm-4">
+
+    <div class="twelve wide column">
+      <div class="ui segment">
+        <h1 class="ui center aligned header">
+          Announcements
+        </h1>
+
+        <div class="ui feed">
+          <% if @announcements.count > 0 %>
+
+            <% @announcements.each do |announcement| %>
+              <div class="event">
+                <div class="label">
+                  <%= image_tag announcement.author_image %>
+                </div>
+                <div class="content">
+                  <div class="summary">
+										<%= announcement.author_name%> posted '<%= link_to announcement.title, announcement %>'
+										<div class="date">
+									    <%= time_ago_in_words(announcement.created_at) %> ago on <%= announcement.post_date %>
+								    </div>
+									</div>
+                  <div class="ui segment">
+                    <%= markdown(announcement.body) %>
+								  </div>
+                </div>
+              </div>
+            <% end %>
+
+          <% else %>
+
+            <div class="ui center aligned segment">
+              <strong>No Announcements</strong>
+            </div>
+
+          <% end %>
+          </br>
+          <div class="ui equal width grid">
+            <div class="row">
+              <div class="column">
+                <%= link_to "See more announcements", announcements_path(), :class => "ui primary fluid button" %>
+              </div>
+              <div class="column">
+                <%= link_to "Make new announcement", new_announcement_path(), :class => "ui green fluid button" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
   <% end %>
+
 </div>
 
 <%= render 'layouts/footer' %>
