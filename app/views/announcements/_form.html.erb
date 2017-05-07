@@ -1,0 +1,38 @@
+<%= form_for @announcement, html: {class: 'ui form error'} do |f| %>
+
+  <% if @announcement.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@announcement.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @announcement.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="ui equal width grid">
+    <div class="row">
+      <div class="column">
+        <%= f.submit 'Submit', :class => 'ui green fluid button' %>
+      </div>
+      <div class="column">
+        <%= link_to "Back to Home", root_path(), :class => "ui primary fluid button" %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

@@ -6,8 +6,7 @@ class HomeController < ApplicationController
       redirect_to authenticate_path
     end
 
-    @late_plates = policy_scope(LatePlate).where(organization_id: current_user.affiliated_organization)
-
+    # Grabs late plates
     sql = "SELECT *
              FROM late_plates
             WHERE meal_id
@@ -16,6 +15,10 @@ class HomeController < ApplicationController
                     WHERE time > LOCALTIME
                  ORDER BY abs(extract(epoch from LOCALTIME - time))
                     LIMIT 1);"
+    @late_plates = LatePlate.find_by_sql(sql)
+
+    # Grabs announcements
+    @announcements = policy_scope(Announcement).where(organization_id: current_user&.affiliated_organization).limit(5).order(id: :desc)
   end
 
   def logged_out

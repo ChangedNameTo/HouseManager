@@ -1,10 +1,8 @@
 <%= render 'layouts/header' %>
 
-<div class="container theme-showcase">
-  <h1>New Meal Time
-    <span style="float:right;">
-      <%= link_to "Back to Meal Times", meals_path(), :class => "btn btn-primary" %>
-    </span>
+<div class="ui container segment">
+  <h1 class="centered ui header">
+    New Meal Time
   </h1>
   <%= render 'form' %>
 </div>

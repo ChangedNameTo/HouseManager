@@ -6,31 +6,30 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.has_role?(Role.where(label: ['System Admin']))
   end
 
   def show?
-    index?
+    user.has_role?(Role.where(label: ['Member']))
   end
 
   def update_positions?
-    user.has_role?(Role.where(label: ['System Admin', 'Organization Admin', 'User Admin']))
+    user.has_role?(Role.where(label: ['System Admin', 'Organization Manager', 'User Manager']))
   end
 
-  def organization_enable
+  def organization_enable?
     update_positions?
   end
 
-  def organization_disable
+  def organization_disable?
     update_positions?
+  end
+
+  def destroy?
+    index?
   end
 
   def update?
-    user.has_role?(Role.where(label: ['System Admin'])) or user.record
+    user.has_role?(Role.where(label: ['System Admin'])) or user == record
   end
-
-  def show_private_info?
-    update?
-  end
-
 end

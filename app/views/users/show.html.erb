@@ -1,39 +1,45 @@
 <%= render 'layouts/header' %>
 
-<div class="container theme-showcase">
-  <h1 align="center">
-    <%= @user.full_name %>
-  </h1>
-  <div align="center">
-    <%= image_tag @user.image, class: 'img-circle', size: '256' %>
-  </div>
-  <div style="text-align:left;">
-    <div>
-      <p>
-        <strong>Phone Number:</strong>
-        <%= @user.phone_number %>
-      </p>
-      <p>
-        <strong>Email Address:</strong>
-        <%= @user.email_address || "--" %>
-      </p>
-      <p>
-        <strong>Organization:</strong>
-        <% if @user.affiliated_organization %>
-          <%= Organization.find(@user.affiliated_organization).chapter_school %>
-        <% else %>
-          <%= "You are not currently affiliated with an organization" %>
-        <% end %>
-      </p>
-      <p>
-        <strong>Number:</strong>
-        <%= @user.number || "--" %>
-      </p>
-      <p>
-        <strong>Big:</strong>
-        <%= @user.big || "--" %>
-      </p>
+<div class="ui container segment">
+  <%= image_tag @user.image, class: "ui centered circular small image" %>
+  <h1 class="ui center aligned header"><%= @user.full_name %></h1>
+  <div class="ui internally celled grid">
+    <div class="row">
+      <div class="eight wide column">
+        <strong>Name:</strong> <%= @user.full_name %>
+      </div>
+      <div class="eight wide column">
+        <strong>Phone Number:</strong> <%= @user.phone_number || "Not Set" %>
+      </div>
     </div>
+    <div class="row">
+      <div class="eight wide column">
+        <strong>Email:</strong> <%= @user.email_address || "Not Set" %>
+      </div>
+      <div class="eight wide column">
+        <strong>Organization:</strong> <%= Organization.find(@user).chapter_school || "Not Set" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="eight wide column">
+        <strong>Big:</strong> <%= @user.big&.full_name || "Not Set" %>
+      </div>
+      <div class="eight wide column">
+        <strong>Number:</strong> <%= @user.number || "Not Set" %>
+      </div>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+  <div class="ui horizontal divider"></div>
+  <div class="ui equal width grid">
+    <% if policy(@user).update? %>
+      <div class="row">
+          <div class="column">
+            <%= link_to "Edit User Profile", edit_user_path(@user), class: "ui primary fluid button" %>
+          </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

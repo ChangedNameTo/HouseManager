@@ -43,6 +43,31 @@ class OrganizationsController < ApplicationController
     redirect_to organizations_path
   end
 
+  def organization_enable_all
+    @users = Organization.find(params[:organization_id]).provisional_members
+
+    @users.each do |user|
+      @user = User.find(user.id)
+      @user.update_attributes(:enabled=> true)
+      UserRole.create(:user_id => @user[:id], :role_id => 8)
+    end
+
+    redirect_to organization_path(params[:organization_id])
+  end
+
+  def organization_disable_all
+    @users = Organization.find(params[:organization_id]).provisional_members
+
+    @users.each do |user|
+      @user = User.find(user.id)
+      @user.update_attributes(:enabled=> false)
+      @user.update_attributes(:affiliated_organization=> nil)
+      @user_roles = UserRole.where(user_id: params[:user_id]).destroy_all
+    end
+
+    redirect_to organization_path(params[:organization_id])
+  end
+
   private
 
   def organization_params

@@ -1,9 +1,9 @@
-<%= form_for @late_plate do |f| %>
+<%= form_for @late_plate, html: {class: 'ui form error'} do |f| %>
+
   <% if @late_plate.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@late_plate.errors.count, "error") %> prohibited
-        this late plate from being saved:
+        <%= pluralize(@late_plate.errors.count, "error") %> prohibited this late plate from being saved:
       </h2>
       <ul>
         <% @late_plate.errors.full_messages.each do |msg| %>
@@ -13,28 +13,30 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :meal_id %>
-    <%= f.collection_select( :meal_id, Meal.all, :id, :meal_name, {prompt: "Meal"}, {:class=>'form-control'}) %>
+  <div class="inline fields">
+    <div class="six wide field">
+      <%= f.label :meal_id %>
+      <%= f.collection_select( :meal_id, Meal.all, :id, :meal_name, {prompt: "Meal"}, {:class=>'ui search clearable dropdown'}) %>
+    </div>
+
+    <div class="six wide field">
+      <%= f.label :day %>
+      <div class="ui icon input conflictable">
+        <%= f.text_field :day, :id => "datepicker", :value => Date.today.strftime("%Y-%m-%d"), :class=>'datepicker' %>
+        <i class="calendar icon"></i>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :day %>
-    <div class="input-group">
-    <%= f.text_field :day, :id => "datepicker", :value => Date.today.strftime("%d-%m-%Y"), :class=>'form-control' %>
-    <span class="input-group-addon">
-      <span class="glyphicon glyphicon-calendar"></span>
-    </span>
+  <div class="ui equal width grid">
+    <div class="row">
+      <div class="column">
+        <%= f.submit 'Submit', :class => 'ui green button fluid ' %>
+      </div>
+      <div class="column">
+        <%= link_to "Back to Late Plates", late_plates_path(), :class => "ui primary fluid button" %>
+      </div>
+    </div>
   </div>
-  </br>
-  <div>
-    <%= f.submit 'Submit', :class => 'btn btn-default' %>
-  </div>
+
 <% end %>
-
-<script>
-$('#datepicker').datetimepicker({
-  format: "DD-MM-YYYY",
-  minDate: moment(),
-});
-</script>

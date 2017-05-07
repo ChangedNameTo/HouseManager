@@ -1,4 +1,4 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, html: {class: 'ui form error' } do |f| %>
 
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -14,45 +14,52 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name, class: 'form-control' %>
+  <h3 class="ui dividing header">Basic Information</h3>
+
+  <div class="fields">
+    <div class="required six wide field">
+      <%= f.label :first_name %><br>
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div class="required six wide field">
+      <%= f.label :last_name %><br>
+      <%= f.text_field :last_name %>
+    </div>
+
+    <div class="four wide field">
+      <%= f.label :phone_number %><br>
+      <%= f.text_field :phone_number %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name, class: 'form-control' %>
-  </div>
 
-  <div class="form-group">
-    <%= f.label :email_address %><br>
-    <%= f.text_field :email_address, class: 'form-control' %>
-  </div>
+  <h3 class="ui dividing header">Organization Information</h3>
 
-  <div class="form-group">
-    <%= f.label :phone_number %><br>
-    <%= f.text_field :phone_number, class: 'form-control' %>
-  </div>
+  <div class="fields">
+    <div class="required six wide field">
+      <%= f.label :organization_id %><br>
+      <%= f.collection_select( :affiliated_organization, Organization.all, :id, :chapter_school, {prompt: "Select your Organization", :selected => (@user.affiliated_organization)}, {:class=>'ui fluid search clearable dropdown'}) %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :organization_id %><br>
-    <%= f.collection_select( :affiliated_organization, Organization.all, :id, :chapter_school, {prompt: "Select your Organization", :selected => (@user.affiliated_organization)}, {:class=>'form-control'}) %>
-  </div>
+    <% if current_user.affiliated_organization and current_user.enabled %>
 
-  <% if current_user.affiliated_organization and current_user.enabled %>
-  <div class="form-group">
-    <%= f.label :number %><br>
-    <%= f.text_field :number, class: 'form-control' %>
-  </div>
+      <div class="six wide field">
+        <%= f.label :number %><br>
+        <%= f.text_field :number, class: 'form-control' %>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :big %><br>
-    <%= f.collection_select( :big, User.where(affiliated_organization: current_user.affiliated_organization), :id, :full_name, {prompt: "Big", :selected => (@user.big)}, {:class=>'form-control'}) %>
+      <div class="four wide field">
+        <%= f.label :big %><br>
+        <%= f.collection_select( :big, User.where(affiliated_organization: current_user.affiliated_organization), :id, :full_name, {prompt: "Big", :selected => (@user.big)}, {:class=>'form-control'}) %>
+      </div>
+
+    <% end %>
+
   </div>
-  <% end %>
 
   <div>
-    <%= f.submit 'Submit', :class => 'btn btn-default' %>
+    <%= f.submit 'Submit', :class => 'ui primary fluid button' %>
   </div>
 
 <% end %>

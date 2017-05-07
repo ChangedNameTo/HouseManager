@@ -1,4 +1,5 @@
 <% if policy(:organization).edit?%>
+
 <%= form_for @organization do |f| %>
 
 <% if @organization.errors.any? %>
@@ -15,59 +16,69 @@
 	</div>
 <% end %>
 
-<table class="table table-bordered">
+<table class="ui table table">
   <tr>
     <th>Role</th>
     <th>Member</th>
   </tr>
   <tr>
     <td>User Manager</td>
-    <td><%= f.collection_select( :user_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "User Manager", :selected => (@organization.user_manager)}, {:class=>'form-control'}) %></td>
+    <td>
+      <%= f.collection_select( :user_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "User Manager", :selected => (@organization.user_manager)}, {:class=>'ui fluid search clearable dropdown'}) %>
+    </td>
   </tr>
   <tr>
     <td>Kitchen Manager</td>
-    <td><%= f.collection_select( :kitchen_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "Kitchen Manager", :selected => ( @organization.kitchen_manager)}, {:class=>'form-control'}) %></td>
+    <td><%= f.collection_select( :kitchen_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "Kitchen Manager", :selected => ( @organization.kitchen_manager)}, {:class=>'ui fluid search clearable dropdown'}) %></td>
   </tr>
   <tr>
     <td>House Manager</td>
-    <td><%= f.collection_select( :house_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "House Manager", :selected => ( @organization.house_manager)}, {:class=>'form-control'}) %></td>
+    <td><%= f.collection_select( :house_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "House Manager", :selected => ( @organization.house_manager)}, {:class=>'ui fluid search clearable dropdown'}) %></td>
   </tr>
   <tr>
     <td>Service Manager</td>
-    <td><%= f.collection_select( :service_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "Service Manager", :selected => ( @organization.service_manager)}, {:class=>'form-control'}) %></td>
+    <td>
+      <%= f.collection_select( :service_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "Service Manager", :selected => ( @organization.service_manager)}, {:class=>'ui fluid search clearable dropdown'}) %>
+    </td>
   </tr>
   <tr>
     <td>Scholarship Manager</td>
-    <td><%= f.collection_select( :scholarship_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "Scholarship Manager", :selected => ( @organization.scholarship_manager)}, {:class=>'form-control'}) %></td>
+    <td><%= f.collection_select( :scholarship_manager, User.where(affiliated_organization: @organization.id), :id, :full_name, {prompt: "Scholarship Manager", :selected => ( @organization.scholarship_manager)}, {:class=>'ui fluid search clearable dropdown'}) %></td>
   </tr>
 </table>
-<%= f.submit 'Update Managers', :class => 'btn btn-default' %>
+
+<%= f.submit 'Update Managers', :class => 'ui primary button' %>
+
 <% end %>
+
 <% else %>
-<table class="table table-bordered">
-  <tr>
-    <th>Role</th>
-    <th>Member</th>
-  </tr>
-  <tr>
-    <td>User Manager</td>
-    <td><%= @organization.user_manager ? User.find(@organization.user_manager).full_name : "--" %></td>
-  </tr>
-  <tr>
-    <td>Kitchen Manager</td>
-    <td><%= @organization.kitchen_manager ? User.find(@organization.kitchen_manager).full_name : "--" %></td>
-  </tr>
-  <tr>
-    <td>House Manager</td>
-    <td><%= @organization.house_manager ? User.find(@organization.house_manager).full_name : "--" %></td>
-  </tr>
-  <tr>
-    <td>Service Manager</td>
-    <td><%= @organization.service_manager ? User.find(@organization.service_manager).full_name : "--" %></td>
-  </tr>
-  <tr>
-    <td>Scholarship Manager</td>
-    <td><%= @organization.scholarship_manager ? User.find(@organization.scholarship_manager).full_name : "--" %></td>
-  </tr>
-</table>
+
+<div class="ui celled very compact striped sortable table">
+  <table class="table">
+    <tr>
+      <th>Role</th>
+      <th>Member</th>
+    </tr>
+    <tr>
+      <td>User Manager</td>
+      <td><%= @organization.user_manager ? User.find(@organization.user_manager).full_name : "--" %></td>
+    </tr>
+    <tr>
+      <td>Kitchen Manager</td>
+      <td><%= @organization.kitchen_manager ? User.find(@organization.kitchen_manager).full_name : "--" %></td>
+    </tr>
+    <tr>
+      <td>House Manager</td>
+      <td><%= @organization.house_manager ? User.find(@organization.house_manager).full_name : "--" %></td>
+    </tr>
+    <tr>
+      <td>Service Manager</td>
+      <td><%= @organization.service_manager ? User.find(@organization.service_manager).full_name : "--" %></td>
+    </tr>
+    <tr>
+      <td>Scholarship Manager</td>
+      <td><%= @organization.scholarship_manager ? User.find(@organization.scholarship_manager).full_name : "--" %></td>
+    </tr>
+  </table>
+</div>
 <% end %>

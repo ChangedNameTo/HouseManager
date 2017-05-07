@@ -1,0 +1,38 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="ui center aligned header">
+    <%= @announcement.title %>
+  </h1>
+  <div class="ui feed">
+    <div class="event">
+      <div class="label">
+        <%= image_tag @announcement.author_image %>
+      </div>
+      <div class="content">
+        <div class="summary">
+          <%= @announcement.author_name%> posted '<%= link_to @announcement.title, @announcement %>'
+          <div class="date">
+            <%= time_ago_in_words(@announcement.created_at) %> ago on <%= @announcement.post_date %>
+          </div>
+        </div>
+        <div class="ui segment">
+          <%= markdown(@announcement.body) %>
+        </div>
+      </div>
+    </div>
+    </br>
+    <div class="ui equal width grid">
+      <div class="row">
+        <div class="column">
+          <%= link_to "See more announcements", announcements_path(), :class => "ui primary fluid button" %>
+        </div>
+        <div class="column">
+          <%= link_to "Make new announcement", new_announcement_path(), :class => "ui green fluid button" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

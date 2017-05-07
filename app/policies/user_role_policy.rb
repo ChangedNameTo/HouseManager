@@ -6,14 +6,14 @@ class UserRolePolicy < ApplicationPolicy
   end
 
   def index?
-    user.has_role?(Role.where(label: ['System Admin', 'Organization Admin', 'User Admin']))
+    user.has_role?(Role.where(label: ['System Admin']))
   end
 
   def create?
-    user.has_role?(Role.where(label: ['System Admin', 'Organization Admin', 'User Admin']))
+    index?
   end
 
   def destroy?
-    create?
+    index?
   end
 end
