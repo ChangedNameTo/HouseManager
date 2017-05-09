@@ -57,16 +57,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "HouseManager_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.deliver_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'housemanager.me',
-    user_name:            'will.housemanager',
-    password:             'Decepti0n',
-    authentication:       'plain',
-    enable_starttls_auto: true
-  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

@@ -30,7 +30,7 @@
         </td>
         <% end %>
         <td style="text-align:center;">
-          <% if current_user.id == meal_request.user_id %>
+          <% if policy(meal_request).update? %>
             <%= link_to "Delete", late_plate_path(meal_request),  method: :delete, :class => "ui red button", data: { confirm: 'Delete late plate request?' } %>
           <% end %>
         </td>

@@ -7,15 +7,7 @@ class HomeController < ApplicationController
     end
 
     # Grabs late plates
-    sql = "SELECT *
-             FROM late_plates
-            WHERE meal_id
-               IN (SELECT id
-                     FROM meals
-                    WHERE time > LOCALTIME
-                 ORDER BY abs(extract(epoch from LOCALTIME - time))
-                    LIMIT 1);"
-    @late_plates = LatePlate.find_by_sql(sql)
+    @late_plates = LatePlate.where(user_id: current_user.id).where(organization_id: current_user.affiliated_organization).limit(3)
 
     # Grabs announcements
     @announcements = policy_scope(Announcement).where(organization_id: current_user&.affiliated_organization).limit(5).order(id: :desc)

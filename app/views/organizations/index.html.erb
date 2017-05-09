@@ -4,7 +4,7 @@
   <h1 class="centered ui header">
     Organizations
   </h1>
-  <div class="ui celled very compact striped sortable six column table">
+  <div class="ui celled very compact striped table">
     <table class="table">
       <thead>
         <tr>
@@ -19,10 +19,10 @@
       <% @organizations.each do |organization| %>
         <tr>
           <td><%= organization.id %></td>
-          <td class="collapsing"><%= organization.full_name %></td>
-          <td class="collapsing"><%= organization.school %></td>
-          <td class="collapsing"><%= organization.address %></td>
-          <td class="collapsing"><%= organization.manager_name || "You need to define a manager"%></td>
+          <td><%= organization.full_name %></td>
+          <td><%= organization.school %></td>
+          <td><%= organization.address %></td>
+          <td><%= organization.manager_name || "You need to define a manager"%></td>
           <td>
             <%= link_to "Show", organization_path(organization), :class => "ui tiny primary button" %>
             <%= link_to "Edit", edit_organization_path(organization), :class => "ui tiny green button" %>
