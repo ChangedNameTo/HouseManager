@@ -42,6 +42,12 @@ class AnnouncementsController < ApplicationController
     @announcements = policy_scope(Announcement).where(organization_id: current_user.affiliated_organization).limit(20).order(id: :desc)
   end
 
+  def destroy
+    Announcement.find(params[:id]).delete
+
+    redirect_to root_path
+  end
+
   private
 
   def announcement_params

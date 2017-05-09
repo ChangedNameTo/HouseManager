@@ -78,14 +78,21 @@
 									</div>
                   <div class="ui segment">
                     <%= markdown(announcement.body) %>
-								  </div>
-                  <% if policy(announcement).update? %>
-                  <div class="row">
-                    <div class="column">
-                      <%= link_to "Edit Announcement", edit_announcement_path(announcement), class:"ui green fluid button" %>
+                  </div>
+                  <div class="ui equal width grid">
+                    <div class="row">
+                      <% if policy(announcement).update? %>
+                        <div class="column">
+                          <%= link_to "Edit Announcement", edit_announcement_path(announcement), class:"ui green fluid button" %>
+                        </div>
+                      <% end %>
+                      <% if policy(announcement).destroy? %>
+                        <div class="column">
+                        <%= link_to "Delete Announcement", announcement_path(announcement), method: :delete, class:"ui red fluid button" %>
+                        </div>
+                      <% end %>
                     </div>
                   </div>
-                  <% end %>
                 </div>
               </div>
               <div class="ui divider"></div>
