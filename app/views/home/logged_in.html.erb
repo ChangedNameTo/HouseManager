@@ -38,8 +38,24 @@
         <div class="ui center aligned header">
           Maintenance Requests
         </div>
-        <div class="item">
-          Coming soon (~0.3).
+        <div class="ui bulleted list">
+          <% if @maintenance_requests.count > 0 %>
+            <% @maintenance_requests.each do |request| %>
+              <div class="item">
+                <% if request.priority_id == 1 %>
+                  <div class="ui fluid green label" align="center">
+                <% elsif request.priority_id == 2 %>
+                  <div class="ui fluid yellow label" align="center">
+                <% elsif request.priority_id == 3 %>
+                  <div class="ui fluid orange label" align="center">
+                <% else %>
+                  <div class="ui fluid red label" align="center">
+                <% end %>
+                    <%= request.issue_title %>
+                  </div>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
 
@@ -50,7 +66,7 @@
           Upcoming Events
         </div>
         <div class="item">
-          Coming soon (~0.8).
+          Coming Soon (~0.8)
         </div>
       </div>
     </div>

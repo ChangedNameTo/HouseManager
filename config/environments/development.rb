@@ -26,9 +26,14 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: 'key-336a616aa53c0cd78523abe3e5aa716e',
+    domain: 'housemanager.me'
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

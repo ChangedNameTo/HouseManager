@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 9) do
+ActiveRecord::Schema.define(version: 12) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,33 @@ ActiveRecord::Schema.define(version: 9) do
     t.datetime "updated_at",                      null: false
     t.index ["day"], name: "index_late_plates_on_day", using: :btree
     t.index ["meal_id"], name: "index_late_plates_on_meal_id", using: :btree
+  end
+
+  create_table "maintenance_request_comments", force: :cascade do |t|
+    t.integer  "maintenance_request_id", null: false
+    t.string   "body",                   null: false
+    t.integer  "author_id",              null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "maintenance_request_priorities", force: :cascade do |t|
+    t.string   "label",       null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "maintenance_requests", force: :cascade do |t|
+    t.string   "issue_title",                     null: false
+    t.string   "description",                     null: false
+    t.integer  "reporter_id",                     null: false
+    t.integer  "organization_id",                 null: false
+    t.integer  "priority_id",                     null: false
+    t.boolean  "started",         default: false
+    t.boolean  "finished",        default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "meals", force: :cascade do |t|
@@ -103,6 +130,11 @@ ActiveRecord::Schema.define(version: 9) do
   add_foreign_key "late_plates", "meals", name: "fk_late_plate_meal"
   add_foreign_key "late_plates", "organizations", name: "fk_late_plate_organization_id"
   add_foreign_key "late_plates", "users", name: "fk_late_plate_requester"
+  add_foreign_key "maintenance_request_comments", "maintenance_requests", name: "fk_request_comments"
+  add_foreign_key "maintenance_request_comments", "users", column: "author_id", name: "fk_request_comment_author"
+  add_foreign_key "maintenance_requests", "maintenance_request_priorities", column: "priority_id", name: "fk_request_priority"
+  add_foreign_key "maintenance_requests", "organizations", name: "fk_request_organization"
+  add_foreign_key "maintenance_requests", "users", column: "reporter_id", name: "fk_request_reporter"
   add_foreign_key "meals", "organizations", name: "fk_meals_organization_id"
   add_foreign_key "organizations", "users", column: "house_manager", name: "fk_house_manager"
   add_foreign_key "organizations", "users", column: "kitchen_manager", name: "fk_kitchen_manager"

@@ -1,0 +1,27 @@
+<%= form_for @maintenance_request_comment, html: {class: 'ui form error'} do |f| %>
+
+<% if @maintenance_request_comment.errors.any? %>
+	<div id="error_explanation">
+		<h2>
+			<%= pluralize(@maintenance_request_comment.errors.count, "error") %> prohibited
+			this article from being saved:
+		</h2>
+		<ul>
+			<% @maintenance_request_comment.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= f.hidden_field :maintenance_request_id, value: @maintenance_request_comment.maintenance_request_id %>
+<%= f.hidden_field :author_id, value: @maintenance_request_comment.author.id %>
+
+<div class="field">
+  <%= f.label :body %><br>
+  <%= f.text_area :body, class: 'form-control' %>
+</div>
+
+<%= f.submit 'New Comment', :class => 'ui fluid primary button' %>
+
+<% end %>

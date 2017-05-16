@@ -39,4 +39,9 @@ Rails.application.routes.draw do
   # Announcements
   resources :announcements
 
+  # Maintenance Requests
+  resources :maintenance_requests do
+    put :change_started_status, :change_finished_status
+  end
+  resources :maintenance_request_comments
 end

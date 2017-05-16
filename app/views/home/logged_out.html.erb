@@ -7,7 +7,10 @@
   <h3 class="ui center aligned header">
     Please sign in to continue
   </h3>
-  <%= link_to "Sign in", "/auth/google_oauth2", class: "ui primary fluid button" %>
+  <%= link_to "Sign in", "/auth/google_oauth2", :class=> "ui google plus button" do %>
+    <i class="google plus icon">
+  <% end %>
+
 </div>
 
 <%= render 'layouts/footer' %>

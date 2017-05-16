@@ -37,5 +37,4 @@ describe Announcement do
       create(:announcement)
     end
   end
-
 end

@@ -1,0 +1,2 @@
+module MaintenanceRequestCommentsHelper
+end

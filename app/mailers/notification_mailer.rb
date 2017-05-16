@@ -19,4 +19,14 @@ class NotificationMailer < ApplicationMailer
       subject: "New Annoucement by #{@author.full_name} - #{@announcement.title}"
     )
   end
+
+  def new_maintenance_request_email(recipients, request_id)
+    @request = MaintenanceRequest.find(request_id)
+    @reporter = User.find(@request.reporter)
+
+    mail(
+      to: recipients,
+      subject: "New Maintenance Request by #{@reporter.full_name} - #{@request.issue_title}"
+    )
+  end
 end

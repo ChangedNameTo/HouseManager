@@ -1,12 +1,11 @@
   ActionMailer::Base.smtp_settings = {
-    :address => "...",
+    :address => "smtp.mailgun.org",
     :port => 587,
-    :user_name => ENV["SES_SMTP_USERNAME"], #Your SMTP user
-    :password => ENV["SES_SMTP_PASSWORD"], #Your SMTP password
-    :authentication => :login,
-    :enable_starttls_auto => true
+    :user_name => 'postmaster@housemanager.me.mailgun.org', #Your SMTP user
+    :password => 'a85a6ceee60ed1b67f579bf67bc6d7', #Your SMTP password
+    :authentication => :plain,
+    :domain => 'housemanager.me.mailgun.org'
   }
 
   ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.default charset: "utf-8",
-    from: "will.housemanager@gmail.com"
+  ActionMailer::Base.default charset: "utf-8"
