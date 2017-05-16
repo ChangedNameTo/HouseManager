@@ -7,7 +7,7 @@ class HomeController < ApplicationController
     end
 
     # Grabs late plates
-    @late_plates = LatePlate.where(user_id: current_user.id).where(organization_id: current_user.affiliated_organization).limit(3)
+    @late_plates = LatePlate.where(user_id: current_user&.id).where(organization_id: current_user&.affiliated_organization).limit(3)
 
     # Grabs announcements
     @announcements = policy_scope(Announcement).where(organization_id: current_user&.affiliated_organization).limit(5).order(id: :desc)
