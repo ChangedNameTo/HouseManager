@@ -11,6 +11,9 @@ class HomeController < ApplicationController
 
     # Grabs announcements
     @announcements = policy_scope(Announcement).where(organization_id: current_user&.affiliated_organization).limit(5).order(id: :desc)
+
+    # Grabs maintenance requests
+    @maintenance_requests = policy_scope(MaintenanceRequest).where(organization_id: current_user&.affiliated_organization).limit(3).order(priority_id: :desc)
   end
 
   def logged_out

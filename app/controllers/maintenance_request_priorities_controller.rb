@@ -1,0 +1,2 @@
+class MainteneanceRequestPrioritiesController < ApplicationController
+end

@@ -1,0 +1,88 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="centered ui header">
+    Maintenance Requests
+  </h1>
+
+  <h3 class="ui dividing header">Open Requests</h3>
+
+  <table class="ui celled very compact striped table">
+    <tr>
+      <th align="center">Title</th>
+      <th align="center">Reporter</th>
+      <th align="center">Priority</th>
+      <th align="center">Date Submitted</th>
+      <th align="center">Actions</th>
+    </tr>
+    <% @maintenance_requests.each do |maintenance_request| %>
+    <tr>
+      <td><%= maintenance_request.issue_title %></td>
+      <td><%= image_tag maintenance_request.reporter_image, class:"ui avatar image" %>   <%= maintenance_request.reporter_name %></td>
+      <td>
+        <% if maintenance_request.priority_id == 1 %>
+          <div class="ui fluid green label" align="center">
+        <% elsif maintenance_request.priority_id == 2 %>
+          <div class="ui fluid yellow label" align="center">
+        <% elsif maintenance_request.priority_id == 3 %>
+          <div class="ui fluid orange label" align="center">
+        <% else %>
+          <div class="ui fluid red label" align="center">
+        <% end %>
+            <%= maintenance_request.priority_label_short %>
+          </div>
+      </td>
+      <td><%= maintenance_request.created_at.strftime("%m/%d/%Y") %></td>
+      <td>
+        <%= link_to "Show", maintenance_request_path(maintenance_request), :class => "ui primary button" %>
+        <%= link_to "Edit", edit_maintenance_request_path(maintenance_request), :class => "ui green button" %>
+        <%= link_to "Delete", maintenance_request_path(maintenance_request),  method: :delete, :class => "ui red button", data: { confirm: 'Delete maintenance request?' } %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <h3 class="ui dividing header">Closed Requests</h3>
+
+  <table class="ui celled very compact striped table">
+    <tr>
+      <th align="center">Title</th>
+      <th align="center">Reporter</th>
+      <th align="center">Priority</th>
+      <th align="center">Date Updated</th>
+      <th align="center">Actions</th>
+    </tr>
+    <% @finished_requests.each do |maintenance_request| %>
+    <tr>
+      <td><%= maintenance_request.issue_title %></td>
+      <td><%= image_tag maintenance_request.reporter_image, class:"ui avatar image" %>   <%= maintenance_request.reporter_name %></td>
+      <td>
+        <% if maintenance_request.priority_id == 1 %>
+          <div class="ui fluid green label" align="center">
+        <% elsif maintenance_request.priority_id == 2 %>
+          <div class="ui fluid yellow label" align="center">
+        <% elsif maintenance_request.priority_id == 3 %>
+          <div class="ui fluid orange label" align="center">
+        <% else %>
+          <div class="ui fluid red label" align="center">
+        <% end %>
+            <%= maintenance_request.priority_label_short %>
+          </div>
+      </td>
+      <td><%= maintenance_request.updated_at.strftime("%m/%d/%Y") %></td>
+      <td>
+        <%= link_to "Show", maintenance_request_path(maintenance_request), :class => "ui primary button" %>
+        <%= link_to "Edit", edit_maintenance_request_path(maintenance_request), :class => "ui green button" %>
+        <%= link_to "Delete", maintenance_request_path(maintenance_request),  method: :delete, :class => "ui red button", data: { confirm: 'Delete maintenance request?' } %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <div>
+    <%= link_to "Create a new maintenance request", new_maintenance_request_path(), :class => "ui primary fluid button" %>
+  </div>
+
+</div>
+
+<%= render 'layouts/footer' %>

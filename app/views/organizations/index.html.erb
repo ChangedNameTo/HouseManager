@@ -4,34 +4,32 @@
   <h1 class="centered ui header">
     Organizations
   </h1>
-  <div class="ui celled very compact striped table">
-    <table class="table">
-      <thead>
-        <tr>
-          <th align="center">Organization</th>
-          <th align="center">Full Name</th>
-          <th align="center">School</th>
-          <th align="center">Address</th>
-          <th align="center">Manager</th>
-          <th align="center">Actions</th>
-        </tr>
-      </thead>
-      <% @organizations.each do |organization| %>
-        <tr>
-          <td><%= organization.id %></td>
-          <td><%= organization.full_name %></td>
-          <td><%= organization.school %></td>
-          <td><%= organization.address %></td>
-          <td><%= organization.manager_name || "You need to define a manager"%></td>
-          <td>
-            <%= link_to "Show", organization_path(organization), :class => "ui tiny primary button" %>
-            <%= link_to "Edit", edit_organization_path(organization), :class => "ui tiny green button" %>
-            <%= link_to "Delete", organization_path(organization),  method: :delete, :class => "ui tiny red button", data: { confirm: 'Delete organization? You probably dont want to do this.' } %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+  <table class="ui celled very compact striped table">
+    <thead>
+      <tr>
+        <th align="center">Organization</th>
+        <th align="center">Full Name</th>
+        <th align="center">School</th>
+        <th align="center">Address</th>
+        <th align="center">Manager</th>
+        <th align="center">Actions</th>
+      </tr>
+    </thead>
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.id %></td>
+        <td><%= organization.full_name %></td>
+        <td><%= organization.school %></td>
+        <td><%= organization.address %></td>
+        <td><%= organization.manager_name || "You need to define a manager"%></td>
+        <td>
+          <%= link_to "Show", organization_path(organization), :class => "ui tiny primary button" %>
+          <%= link_to "Edit", edit_organization_path(organization), :class => "ui tiny green button" %>
+          <%= link_to "Delete", organization_path(organization),  method: :delete, :class => "ui tiny red button", data: { confirm: 'Delete organization? You probably dont want to do this.' } %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 
 <%= render 'layouts/footer' %>

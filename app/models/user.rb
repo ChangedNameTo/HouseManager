@@ -30,6 +30,9 @@ class User < ApplicationRecord
   has_many :user_roles, dependent: :destroy
   has_many :roles, through: :user_roles, dependent: :destroy
   has_many :late_plates, dependent: :destroy
+  has_many :announcements, dependent: :destroy
+  has_many :maintenance_requests, dependent: :destroy
+  has_many :maintenance_request_comments, dependent: :destroy
   belongs_to :organization, optional: true
 
   # Validation

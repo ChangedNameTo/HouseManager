@@ -1,8 +1,10 @@
 <%= render 'layouts/header' %>
 
-<div class="container theme-showcase">
-  <h1>New User<span style="float:right;"><%= link_to "Back to User List", users_path(), :class => "btn btn-primary" %></span></h1>
-    <%= render 'form' %>
+<div class="ui container segment">
+  <h1 class="centered ui header">
+    Edit User
+  </h1>
+  <%= render 'form' %>
 </div>
 
 <%= render 'layouts/footer' %>

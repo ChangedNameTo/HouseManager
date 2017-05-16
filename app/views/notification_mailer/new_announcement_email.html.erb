@@ -12,7 +12,7 @@
 
     --
 
-    <%= User.find(@announcement.find(@announcement.author_id)) %>
+    <%= @announcement.author.full_name %>
   </body>
 </html>
 

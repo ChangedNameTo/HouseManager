@@ -1,0 +1,121 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="ui center aligned header">
+    <%= @maintenance_request.issue_title %>
+  </h1>
+
+  <h3 class="ui dividing header">Information</h3>
+
+  <div class="ui internally celled grid">
+    <div class="row">
+      <div class="five wide column">
+        <strong>Reported By:</strong> <%= @maintenance_request.reporter_name %>
+      </div>
+      <div class="six wide column">
+        <strong>Posted On:</strong> <%= @maintenance_request.post_date %>
+      </div>
+      <div class="five wide column">
+        <strong>Updated On:</strong> <%= @maintenance_request.updated_date %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="sixteen wide column">
+        <% if !@maintenance_request.finished and !@maintenance_request.started %>
+          <div class="ui fluid red label" align="center">
+            Not yet started
+          </div>
+        <% elsif !@maintenance_request.finished and @maintenance_request.started %>
+          <div class="ui fluid yellow label" align="center">
+            In progress
+          </div>
+        <% else %>
+          <div class="ui fluid green label" align="center">
+            Finished
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% if policy(:maintenance_request).change_started_status? %>
+    <div class="row">
+      <div class="eight wide column">
+        <% if !@maintenance_request.started and !@maintenance_request.finished%>
+          <%= link_to "Start Progress", maintenance_request_change_started_status_path(@maintenance_request.id), method: :put, :class =>"ui fluid green button" %>
+        <% elsif !@maintenance_request.finished %>
+          <%= link_to "Stop Progress", maintenance_request_change_started_status_path(@maintenance_request.id), method: :put, :class =>"ui fluid yellow button" %>
+        <% else %>
+          <button class="ui fluid grey button">
+            Must reopen before starting
+          </button>
+        <% end %>
+      </div>
+      <div class="eight wide column">
+        <% if !@maintenance_request.finished %>
+          <%= link_to "Finish Request", maintenance_request_change_finished_status_path(@maintenance_request.id), method: :put, :class =>"ui fluid green button" %>
+        <% else %>
+          <%= link_to "Reopen Request", maintenance_request_change_finished_status_path(@maintenance_request.id), method: :put, :class =>"ui fluid red button" %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+  <h3 class="ui dividing header">Description</h3>
+
+  <div class="ui container segment">
+    <%= markdown(@maintenance_request.description) %>
+  </div>
+
+  <h3 class="ui dividing header">Comments</h3>
+
+  <div class="ui feed">
+  <% if @request_comments.count > 0 %>
+
+    <% @request_comments.each do |request_comment| %>
+      <div class="event">
+        <div class="label">
+          <%= image_tag request_comment.author_image %>
+        </div>
+        <div class="content">
+          <div class="summary">
+            <%= request_comment.author_name%> commented
+            <div class="date">
+              <%= time_ago_in_words(request_comment.created_at) %> ago on <%= request_comment.post_date %>
+            </div>
+          </div>
+          <div class="ui segment">
+            <%= markdown(request_comment.body) %>
+
+            <div class="ui divider"></div>
+
+            <%= link_to edit_maintenance_request_comment_path(request_comment), :class=>"ui green button" do %>
+              <i class="edit icon"></i>
+            <% end %>
+
+            <%= link_to maintenance_request_comment_path(request_comment), method: :delete, :class=>"ui red button" do %>
+              <i class="remove icon"></i>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  <% else %>
+
+    <div class="ui container segment">
+      There are currently no comments
+    </div>
+
+  <% end %>
+  </div>
+
+  <div class="ui container segment">
+    <%= render 'maintenance_request_comments/form' %>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

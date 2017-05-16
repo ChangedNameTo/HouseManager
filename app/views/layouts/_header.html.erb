@@ -4,15 +4,30 @@
 
     <% if current_user %>
 
-      <% if policy(:organization).index? %>
-        <%= link_to 'Organizations', organizations_path, class:"item" %>
-      <% elsif current_user.affiliated_organization and current_user.enabled %>
-        <%= link_to 'My Organization', organization_path(current_user.affiliated_organization), class:"item" %>
-      <% end %>
+      <div class="ui dropdown item">
+        Information
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <% if policy(:organization).index? %>
+            <%= link_to 'Organizations', organizations_path, class:"item" %>
+          <% elsif current_user.affiliated_organization and current_user.enabled %>
+            <%= link_to 'My Organization', organization_path(current_user.affiliated_organization), class:"item" %>
+          <% end %>
+        </div>
+      </div>
 
-      <% if policy(:late_plate).index? %>
-        <%= link_to 'Late Plates', late_plates_path, class:"item" %>
-      <% end %>
+      <div class="ui dropdown item">
+        Resources
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <% if policy(:late_plate).index? %>
+            <%= link_to 'Late Plates', late_plates_path, class:"item" %>
+          <% end %>
+          <% if policy(:maintenance_request).index? %>
+            <%= link_to 'Maintenance Requests', maintenance_requests_path, class:"item" %>
+          <% end %>
+        </div>
+      </div>
 
 
     <div class="right menu">
@@ -20,7 +35,7 @@
       <% if current_user&.has_role?(Role.where(label: ['System Admin', 'Kitchen Manager', 'Organization Manager'] )) %>
 
         <div class="ui dropdown item">
-          My Admin Options
+          Admin Options
           <i class="dropdown icon"></i>
           <div class="menu">
             <%= link_to 'Manage Meals', meals_path, class:"item" %>
@@ -29,13 +44,11 @@
 
       <% end %>
 
-      <%= link_to "My Profile", user_path(current_user), class:"item" %>
-
       <div class="ui right dropdown item">
         User Options
         <i class="dropdown icon"></i>
         <div class="menu">
-            <%= link_to 'Edit Profile', edit_user_path(current_user), class:"item" %>
+            <%= link_to "My Profile", user_path(current_user), class:"item" %>
             <%= link_to 'Log Out', signout_path, class:"item" %>
         </div>
       </div>

@@ -1,0 +1,43 @@
+<%= form_for @maintenance_request, html: {class: 'ui form error'} do |f| %>
+
+  <% if @maintenance_request.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@maintenance_request.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @maintenance_request.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :issue_title %><br>
+    <%= f.text_field :issue_title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :priority %><br>
+    <%= f.collection_select( :priority_id, MaintenanceRequestPriority.all, :id, :priority_label, {prompt: "Priority"}, {:class=>'ui search clearable dropdown'}) %>
+  </div>
+
+  <div class="ui equal width grid">
+    <div class="row">
+      <div class="column">
+        <%= f.submit 'Submit', :class => 'ui green fluid button' %>
+      </div>
+      <div class="column">
+        <%= link_to "Back to Home", maintenance_requests_path(), :class => "ui primary fluid button" %>
+      </div>
+    </div>
+  </div>
+
+<% end %>
