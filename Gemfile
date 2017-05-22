@@ -30,9 +30,6 @@ gem 'jquery-ui-rails'
 # Removing a deprecation warning
 gem 'sprockets', '3.6.3'
 
-# Timepicker stuff
-gem 'jquery-timepicker-rails'
-
 # Pundit handles my access permissions for everything
 gem "pundit"
 

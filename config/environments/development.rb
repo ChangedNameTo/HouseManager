@@ -29,10 +29,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: 'key-336a616aa53c0cd78523abe3e5aa716e',
-    domain: 'housemanager.me'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.smtp_settings = {
+		:authentication => :plain,
+		:address => "smtp.mailgun.org",
+		:port => 587,
+		:domain => ENV['domain'],
+		:user_name => ENV['username'],
+		:password => ENV['password']
   }
 
   # Print deprecation notices to the Rails logger.
