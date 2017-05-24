@@ -17,9 +17,9 @@
     </tr>
     <% @maintenance_requests.each do |maintenance_request| %>
     <tr>
-      <td><%= maintenance_request.issue_title %></td>
-      <td><%= image_tag maintenance_request.reporter_image, class:"ui avatar image" %>   <%= maintenance_request.reporter_name %></td>
-      <td>
+      <td style="text-align:center;"><%= maintenance_request.issue_title %></td>
+      <td style="text-align:center;"><%= image_tag maintenance_request.reporter_image, class:"ui avatar image" %>   <%= maintenance_request.reporter_name %></td>
+      <td style="text-align:center;">
         <% if maintenance_request.priority_id == 1 %>
           <div class="ui fluid green label" align="center">
         <% elsif maintenance_request.priority_id == 2 %>
@@ -32,8 +32,8 @@
             <%= maintenance_request.priority_label_short %>
           </div>
       </td>
-      <td><%= maintenance_request.created_at.strftime("%m/%d/%Y") %></td>
-      <td>
+      <td style="text-align:center;"><%= maintenance_request.created_at.strftime("%m/%d/%Y") %></td>
+      <td style="text-align:center;">
         <%= link_to "Show", maintenance_request_path(maintenance_request), :class => "ui primary button" %>
         <%= link_to "Edit", edit_maintenance_request_path(maintenance_request), :class => "ui green button" %>
         <%= link_to "Delete", maintenance_request_path(maintenance_request),  method: :delete, :class => "ui red button", data: { confirm: 'Delete maintenance request?' } %>

@@ -1,0 +1,71 @@
+<%= form_for @service_hour, html: {class: 'ui form error'} do |f| %>
+
+  <% if @service_hour.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@service_hour.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @service_hour.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h3 class="ui dividing header">Basic Information</h3>
+
+  <div class="fields">
+    <div class="required six wide field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="required six wide field">
+      <%= f.label :for %><br>
+      <%= f.text_field :for %>
+    </div>
+
+    <div class="required four wide field">
+      <%= f.label :day %><br>
+      <div class="ui icon input conflictable">
+        <%= f.text_field :day, :id => "datepicker", :value => Date.today.strftime("%Y-%m-%d"), :class=>'datepicker' %>
+        <i class="calendar icon"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="fields">
+    <div class="required sixteen wide field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+  </div>
+
+  <h3 class="ui dividing header">Compensation</h3>
+
+  <div class="fields">
+    <div class="required eight wide field">
+      <%= f.label :hours %><br>
+      <%= f.text_field :hours %>
+    </div>
+
+    <div class="required eight wide field">
+      <%= f.label :money %><br>
+      <%= f.text_field :money %>
+    </div>
+  </div>
+
+  <div class="ui equal width grid">
+    <div class="row">
+      <div class="column">
+        <%= f.submit 'Submit', :class => 'ui green fluid button' %>
+      </div>
+      <div class="column">
+        <%= link_to "Back to Hours", service_hours_path(), :class => "ui primary fluid button" %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,47 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="ui center aligned header">
+    <%= @service_hour.title %>
+  </h1>
+
+  <h3 class="ui dividing header">Information</h3>
+
+  <div class="ui internally celled grid">
+    <div class="row">
+      <div class="eight wide column">
+        <strong>For:</strong> <%= @service_hour.for %>
+      </div>
+      <div class="eight wide column">
+        <strong>Date:</strong> <%= @service_hour.day %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="eight wide column">
+        <strong>Hours:</strong> <%= @service_hour.hours || 'No hours' %>
+      </div>
+      <div class="eight wide column">
+        <strong>Money:</strong> <%= @service_hour.money || 'No Money' %>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="ui dividing header">Description</h3>
+
+  <div class="ui container segment">
+    <%= markdown(@service_hour.description) %>
+  </div>
+
+  <div class="ui equal width grid">
+    <div class="row">
+      <div class="column">
+        <%= link_to "See more service hours", service_hours_path(), :class => "ui primary fluid button" %>
+      </div>
+      <div class="column">
+        <%= link_to "Edit this service hour", edit_service_hour_path(@service_hour), :class => "ui green fluid button" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/footer' %>

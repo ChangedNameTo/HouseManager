@@ -24,7 +24,7 @@ class User < ApplicationRecord
   # Callbacks
 
   # This doesn't work atm
-  #after_commit :send_welcome_email, on: :create
+  after_commit :send_welcome_email, on: :create
 
   # Associations
   has_many :user_roles, dependent: :destroy
@@ -61,7 +61,6 @@ class User < ApplicationRecord
     presence: true
 
   # Helpers
-
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -84,6 +83,18 @@ class User < ApplicationRecord
     end
 
     false
+  end
+
+  def service_hours
+    @hours = ServiceHour.where(recipient_id: self.id)
+
+    total = 0
+
+    @hours&.each do |hour|
+      total = total + hour.hours_and_money
+    end
+
+    return total
   end
 
 	def self.from_omniauth(auth)

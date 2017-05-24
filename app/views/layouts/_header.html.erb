@@ -26,23 +26,29 @@
           <% if policy(:maintenance_request).index? %>
             <%= link_to 'Maintenance Requests', maintenance_requests_path, class:"item" %>
           <% end %>
+          <% if policy(:service_hour).index? %>
+            <%= link_to 'Service Hours', service_hours_path, class:"item" %>
+          <% end %>
         </div>
       </div>
 
 
     <div class="right menu">
 
-      <% if current_user&.has_role?(Role.where(label: ['System Admin', 'Kitchen Manager', 'Organization Manager'] )) %>
 
         <div class="ui dropdown item">
           Admin Options
           <i class="dropdown icon"></i>
           <div class="menu">
-            <%= link_to 'Manage Meals', meals_path, class:"item" %>
+          <% if current_user&.has_role?(Role.where(label: ['System Admin', 'Kitchen Manager', 'Organization Manager'] )) %>
+              <%= link_to 'Manage Meals', meals_path, class:"item" %>
+          <% end %>
+          <% if current_user&.has_role?(Role.where(label: ['System Admin', 'Service Manager', 'Organization Manager'] )) %>
+            <%= link_to 'Manage Service Hours', admin_service_hours_path, class:"item" %>
+          <% end %>
           </div>
         </div>
 
-      <% end %>
 
       <div class="ui right dropdown item">
         User Options
