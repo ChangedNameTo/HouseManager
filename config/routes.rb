@@ -44,4 +44,10 @@ Rails.application.routes.draw do
     put :change_started_status, :change_finished_status
   end
   resources :maintenance_request_comments
+
+  # Service Hours
+  resources :service_hours do
+    get :admin, on: :collection
+    get :show_user
+  end
 end

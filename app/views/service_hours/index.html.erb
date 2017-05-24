@@ -1,0 +1,55 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="centered ui header">
+    Service Hours
+  </h1>
+  <table class="ui celled very compact striped table">
+    <tr>
+      <th align="center">Project</th>
+      <th align="center">For</th>
+      <th align="center">Day</th>
+      <th align="center">Hours</th>
+      <th align="center">Actions</th>
+    </tr>
+    <% if @service_hours.count > 0 %>
+      <% @service_hours&.each do |service_hour| %>
+        <tr>
+          <td style="text-align:center;"><%= service_hour.title %></td>
+          <td style="text-align:center;"><%= service_hour.for %></td>
+          <td style="text-align:center;"><%= service_hour.day.strftime("%m/%d/%Y") %></td>
+          <td style="text-align:center;"><%= service_hour.hours_and_money %></td>
+          <td style="text-align:center;">
+            <% if policy(service_hour).update? %>
+              <%= link_to "Show", service_hour_path(service_hour), :class => "ui primary button" %>
+              <%= link_to "Edit", edit_service_hour_path(service_hour), :class => "ui green button" %>
+              <%= link_to "Delete", service_hour_path(service_hour),  method: :delete, :class => "ui red button", data: { confirm: 'Delete service hour?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+    <tr>
+      <td colspan="5" style="text-align:center;">
+        <div class="ui fluid red label">
+          You don't have any hours submitted!
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <div class="ui indicating progress" data-value=<%= @total_hours %> data-total=10>
+    <div class="bar">
+      <div class="progress"></div>
+    </div>
+    <div class="label">Total Hours</div>
+  </div>
+
+  <div>
+    <%= link_to "Submit New Hours", new_service_hour_path(), :class => "ui primary fluid button" %>
+  </div>
+
+</div>
+
+<%= render 'layouts/footer' %>

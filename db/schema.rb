@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 12) do
+ActiveRecord::Schema.define(version: 13) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,18 @@ ActiveRecord::Schema.define(version: 12) do
     t.index ["label"], name: "index_roles_on_label", unique: true, using: :btree
   end
 
+  create_table "service_hours", force: :cascade do |t|
+    t.string   "title",        null: false
+    t.string   "for",          null: false
+    t.string   "description",  null: false
+    t.date     "day",          null: false
+    t.decimal  "hours"
+    t.decimal  "money"
+    t.integer  "recipient_id", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "user_roles", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "role_id",    null: false
@@ -142,6 +154,7 @@ ActiveRecord::Schema.define(version: 12) do
   add_foreign_key "organizations", "users", column: "scholarship_manager", name: "fk_scholarship_manager"
   add_foreign_key "organizations", "users", column: "service_manager", name: "fk_service_manager"
   add_foreign_key "organizations", "users", column: "user_manager", name: "fk_user_manager"
+  add_foreign_key "service_hours", "users", column: "recipient_id", name: "fk_service_hour_recipient"
   add_foreign_key "user_roles", "roles", name: "fk_user_role_role"
   add_foreign_key "user_roles", "users", name: "fk_user_role_user"
   add_foreign_key "users", "organizations", column: "affiliated_organization", name: "fk_affiliated_organization"

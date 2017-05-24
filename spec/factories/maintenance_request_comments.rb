@@ -14,6 +14,6 @@ FactoryGirl.define do
   factory :maintenance_request_comment do
     maintenance_request
     body  {Faker::Lorem.paragraph}
-    user
+    author
   end
 end

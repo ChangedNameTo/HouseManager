@@ -18,7 +18,7 @@ class MaintenanceRequest < ApplicationRecord
   # Callbacks
   after_commit :send_new_maintenance_request_email, on: :create
 
-  # Association
+  # Associations
   belongs_to :user, foreign_key: 'reporter_id'
   belongs_to :organization, foreign_key: 'organization_id'
   belongs_to :maintenance_request_priority, foreign_key: 'priority_id'

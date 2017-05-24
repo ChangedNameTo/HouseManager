@@ -1,0 +1,62 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="ui centered header">
+    Member Service Hours
+  </h1>
+
+  <h3 class="ui dividing header">Member Progress</h3>
+
+  <div class="ui red progress" data-value=<%= @not_started %> data-total=<%= @users.count %>>
+    <div class="bar">
+      <div class="progress"></div>
+    </div>
+    <div class="label">Not Started</div>
+  </div>
+  <div class="ui yellow progress" data-value=<%= @in_progress %> data-total=<%= @users.count %>>
+    <div class="bar">
+      <div class="progress"></div>
+    </div>
+    <div class="label">Some Hours</div>
+  </div>
+  <div class="ui green progress" data-value=<%= @done %> data-total=<%= @users.count %>>
+    <div class="bar">
+      <div class="progress"></div>
+    </div>
+    <div class="label">Done</div>
+  </div>
+
+  <h3 class="ui dividing header">Member Table</h3>
+  <table class="ui celled striped sortable three column table">
+    <tr>
+      <th align="center">Name</th>
+      <th align="center">Hours</th>
+      <th align="center">Actions</th>
+    </tr>
+    <% @users&.each do |user| %>
+      <tr>
+        <td style="text-align:center;"><%= user.full_name %></td>
+        <td style="text-align:center;">
+          <% if user.service_hours == 0 %>
+            <div class="ui fluid red label" align="center">
+              <%= user.service_hours %> total hours
+            </div>
+          <% elsif user.service_hours > 0 and user.service_hours < 10 %>
+            <div class="ui fluid yellow label" align="center">
+              <%= user.service_hours %> total hours
+            </div>
+          <% else %>
+            <div class="ui fluid green label" align="center">
+              <%= user.service_hours %> total hours
+            </div>
+          <% end %>
+        </td>
+        <td style="text-align:center;">
+          <%= link_to "Show", service_hour_show_user_path(user), :class => "ui small primary button" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= render 'layouts/footer' %>

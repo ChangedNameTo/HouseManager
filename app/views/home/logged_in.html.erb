@@ -38,21 +38,35 @@
         <div class="ui center aligned header">
           Maintenance Requests
         </div>
-        <div class="ui bulleted list">
+        <div class="ui list">
           <% if @maintenance_requests&.count > 0 %>
             <% @maintenance_requests.each do |request| %>
               <div class="item">
                 <% if request.priority_id == 1 %>
-                  <div class="ui fluid green label" align="center">
+                  <%= link_to maintenance_request_path(request) do %>
+                    <div class="ui fluid green label" align="center">
+                      <%= request.issue_title %>
+                    </div>
+                  <% end %>
                 <% elsif request.priority_id == 2 %>
-                  <div class="ui fluid yellow label" align="center">
+                  <%= link_to maintenance_request_path(request) do %>
+                    <div class="ui fluid yellow label" align="center">
+                      <%= request.issue_title %>
+                    </div>
+                  <% end %>
                 <% elsif request.priority_id == 3 %>
-                  <div class="ui fluid orange label" align="center">
+                  <%= link_to maintenance_request_path(request) do %>
+                    <div class="ui fluid orange label" align="center">
+                      <%= request.issue_title %>
+                    </div>
+                  <% end %>
                 <% else %>
-                  <div class="ui fluid red label" align="center">
+                  <%= link_to maintenance_request_path(request) do %>
+                    <div class="ui fluid red label" align="center">
+                      <%= request.issue_title %>
+                    </div>
+                  <% end %>
                 <% end %>
-                    <%= request.issue_title %>
-                  </div>
               </div>
             <% end %>
           <% end %>
@@ -63,10 +77,13 @@
 
       <div class="ui segment">
         <div class="ui center aligned header">
-          Upcoming Events
+          Service Hours
         </div>
-        <div class="item">
-          Coming Soon (~0.8)
+        <div class="ui indicating progress" data-value=<%= @total_hours %> data-total=10>
+          <div class="bar">
+            <div class="progress"></div>
+          </div>
+          <div class="label">Total Hours</div>
         </div>
       </div>
     </div>

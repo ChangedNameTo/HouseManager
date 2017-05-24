@@ -21,7 +21,7 @@
 #
 
 FactoryGirl.define do
-  factory :user, aliases: [:creator, :organization_manager, :user_manager, :kitchen_manager, :house_manager, :service_manager, :scholarship_manager, :user_id, :author_id] do
+  factory :user, aliases: [:creator, :organization_manager, :user_manager, :kitchen_manager, :house_manager, :service_manager, :scholarship_manager, :user_id, :author] do
     first_name       {Faker::Name.first_name}
     last_name        {Faker::Name.last_name}
     email_address    {Faker::Internet.email}
@@ -71,6 +71,15 @@ FactoryGirl.define do
         UserRole.create!(
           user: user,
           role: Role.find_by(label: 'House Manager')
+        )
+      end
+    end
+
+    trait :serv_man do
+      after(:create) do |user|
+        UserRole.create!(
+          user: user,
+          role: Role.find_by(label: 'Service Manager')
         )
       end
     end

@@ -1,0 +1,58 @@
+<%= render 'layouts/header' %>
+
+<div class="ui container segment">
+  <h1 class="ui centered header">
+    Service Hours for <%= @user.full_name %>
+  </h1>
+
+  <table class="ui celled striped sortable five column table">
+    <tr>
+      <th align="center">Project</th>
+      <th align="center">For</th>
+      <th align="center">Day</th>
+      <th align="center">Hours</th>
+      <th align="center">Actions</th>
+    </tr>
+    <% if @service_hours.count > 0 %>
+      <% @service_hours&.each do |service_hour| %>
+        <tr>
+          <td style="text-align:center;"><%= service_hour.title %></td>
+          <td style="text-align:center;"><%= service_hour.for %></td>
+          <td style="text-align:center;"><%= service_hour.day.strftime("%m/%d/%Y") %></td>
+          <td style="text-align:center;"><%= service_hour.hours_and_money %></td>
+          <td style="text-align:center;">
+            <% if policy(service_hour).update? %>
+              <%= link_to "Show", service_hour_path(service_hour), :class => "ui primary button" %>
+              <%= link_to "Edit", edit_service_hour_path(service_hour), :class => "ui green button" %>
+              <%= link_to "Delete", service_hour_path(service_hour),  method: :delete, :class => "ui red button", data: { confirm: 'Delete service hour?' } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+    <tr>
+      <td colspan="5" style="text-align:center;">
+        <div class="ui fluid red label">
+          You don't have any hours submitted!
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <% if @total_hours == 0 %>
+    <div class="ui fluid red label" align="center">
+      <%= @user.full_name %> has <%= @total_hours %> total hours
+    </div>
+  <% elsif @total_hours > 0 and @total_hours < 10 %>
+    <div class="ui fluid yellow label" align="center">
+      <%= @user.full_name %> has <%= @total_hours %> total hours
+    </div>
+  <% else %>
+    <div class="ui fluid green label" align="center">
+      <%= @user.full_name %> has <%= @total_hours %> total hours
+    </div>
+  <% end %>
+</div>
+
+<%= render 'layouts/footer' %>
