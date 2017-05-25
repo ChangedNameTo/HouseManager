@@ -1,4 +1,4 @@
-ps aux | egrep -i 'rails[^a-zA-Z]' | awk '{print $2}' | xargs kill
+ps aux | egrep -i 'puma' | awk '{print $2}' | xargs kill
 git pull
 bundle install
 rails db:migrate RAILS_ENV=production
