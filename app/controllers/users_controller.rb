@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    @organization = Organization.find(@user.affiliated_organization)
+    @organization = Organization.find(@user&.affiliated_organization)
   end
 
   def destroy
