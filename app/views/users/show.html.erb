@@ -17,7 +17,7 @@
         <strong>Email:</strong> <%= @user.email_address || "Not Set" %>
       </div>
       <div class="eight wide column">
-        <strong>Organization:</strong> <%= @organization.chapter_school || "Not Set"%>
+        <strong>Organization:</strong> <%= @organization&.chapter_school || "Not Set"%>
       </div>
     </div>
     <div class="row">
