@@ -12,29 +12,34 @@
             <%= link_to 'Organizations', organizations_path, class:"item" %>
           <% elsif current_user.affiliated_organization and current_user.enabled %>
             <%= link_to 'My Organization', organization_path(current_user.affiliated_organization), class:"item" %>
+          <% else %>
+            <div class="item">
+              Please join an organization
+            </div>
           <% end %>
         </div>
       </div>
 
-      <div class="ui dropdown item">
-        Resources
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          <% if policy(:late_plate).index? %>
-            <%= link_to 'Late Plates', late_plates_path, class:"item" %>
-          <% end %>
-          <% if policy(:maintenance_request).index? %>
-            <%= link_to 'Maintenance Requests', maintenance_requests_path, class:"item" %>
-          <% end %>
-          <% if policy(:service_hour).index? %>
-            <%= link_to 'Service Hours', service_hours_path, class:"item" %>
-          <% end %>
+      <% if current_user.affiliated_organization and current_user.enabled %>
+        <div class="ui dropdown item">
+          Resources
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <% if policy(:late_plate).index? %>
+              <%= link_to 'Late Plates', late_plates_path, class:"item" %>
+            <% end %>
+            <% if policy(:maintenance_request).index? %>
+              <%= link_to 'Maintenance Requests', maintenance_requests_path, class:"item" %>
+            <% end %>
+            <% if policy(:service_hour).index? %>
+              <%= link_to 'Service Hours', service_hours_path, class:"item" %>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
 
     <div class="right menu">
-
 
         <div class="ui dropdown item">
           Admin Options

@@ -1,8 +1,10 @@
 <%= render 'layouts/header' %>
 
 <div class="ui container segment">
-  <h1>New Organization<span style="float:right;"><%= link_to "Back to Organization List", organizations_path(), :class => "ui primary fluid button" %></span></h1>
-    <%= render 'form' %>
+  <h1 class="centered ui header">
+    New Organization
+  </h1>
+  <%= render 'form' %>
 </div>
 
 <%= render 'layouts/footer' %>

@@ -3,11 +3,14 @@
 <div class="ui container grid" >
 
   <% if !current_user&.affiliated_organization and !current_user&.enabled %>
-
-  <h1 align="center">Welcome to House Manager!</h1>
-  <p>
-    It appears that you currently are not affiliated with an organization. To do so, go to user options and select your organization from the dropdown. Once your organization manager adds you, you'll be all set!
-  </p>
+  <div class="ui container segment">
+    <h1 class="ui center aligned header">
+      Welcome to House Manager!
+    </h1>
+    <p>
+      It appears that you currently are not affiliated with an organization. To do so, go to user options and select your organization from the dropdown. Once your organization manager adds you, you'll be all set!
+    </p>
+  </div>
 
   <% else  %>
 

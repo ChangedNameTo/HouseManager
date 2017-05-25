@@ -1,4 +1,4 @@
-<%= form_for @organization do |f| %>
+<%= form_for @organization, html: { class: 'ui form error' } do |f| %>
 
   <% if @organization.errors.any? %>
     <div id="error_explanation">
@@ -14,33 +14,39 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :full_name %><br>
-    <%= f.text_field :full_name, class: 'form-control' %>
+  <div class="fields">
+    <div class="required six wide field">
+      <%= f.label :full_name %><br>
+      <%= f.text_field :full_name, class: 'form-control' %>
+    </div>
+
+    <div class="required six wide field">
+      <%= f.label :school %><br>
+      <%= f.text_field :school, class: 'form-control' %>
+    </div>
+
+    <div class="required four wide field">
+      <%= f.label :abbreviation %><br>
+      <%= f.text_field :abbreviation, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :abbreviation %><br>
-    <%= f.text_field :abbreviation, class: 'form-control' %>
+  <div class="fields">
+    <div class="required sixteen wide field">
+      <%= f.label :address %><br>
+      <%= f.text_area :address, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :school %><br>
-    <%= f.text_field :school, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :address %><br>
-    <%= f.text_area :address, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :organization_manager %><br>
-    <%= f.collection_select( :organization_manager, User.all, :id, :full_name, {}, {:class=>'form-control'}) %>
+  <div class="fields">
+    <div class="required sixteen wide field">
+      <%= f.label :organization_manager %><br>
+      <%= f.collection_select( :organization_manager, User.all, :id, :full_name, {}, {:class=>'ui fluid search clearable dropdown'}) %>
+    </div>
   </div>
 
   <div>
-    <%= f.submit 'Submit', :class => 'btn btn-default' %>
+    <%= f.submit 'Submit', :class => 'ui primary fluid button' %>
   </div>
 
 <% end %>
