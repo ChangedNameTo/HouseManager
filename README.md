@@ -4,9 +4,11 @@
 
 Everything you need to set up house manager. Stuff for Will
 
-AWS Setup: Do this shit when you want to deploy: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_Ruby_rails.html
 
-https://www.sitepoint.com/deploy-your-rails-app-to-aws/
+Starts everything if you already have this installed
+```
+./deploy_script.sh
+```
 
 Firstly install PostgreSQL, none of this stuff works without it.
 
