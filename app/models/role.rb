@@ -22,7 +22,7 @@ class Role < ApplicationRecord
   validates :description, 
     presence: true
 
-  def label_with_description
+  def label
     "#{label}"
 
   end
