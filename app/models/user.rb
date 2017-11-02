@@ -97,7 +97,7 @@ class User < ApplicationRecord
     return total
   end
 
-	def self.from_omniauth(auth)
+  def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.email_address = auth.info.email
       user.provider = auth.provider
